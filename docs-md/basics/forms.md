@@ -2,9 +2,9 @@
 
 ### Basic forms
 
-Here is an example of a component with a basic form: 
+Here is an example of a component with a basic form:
 
-```
+```jsx
 @Component({
   tag: 'my-name',
   styleUrl: 'my-name.scss'
@@ -37,14 +37,14 @@ export class MyName {
 }
 ```
 
-Lets go over what is happening here. First we bind the value of the input to a state variable, in this case `this.value`. We then set our state variable to the new value of the input with the `handleChange` method we have bound to `onInput`. `onInput` will fire every keystroke that the user types into the input.
+Let's go over what is happening here. First we bind the value of the input to a state variable, in this case `this.value`. We then set our state variable to the new value of the input with the `handleChange` method we have bound to `onInput`. `onInput` will fire every keystroke that the user types into the input.
 
 
 ### Advanced forms
 
 Here is an example of a component with a more advanced form:
 
-```
+```jsx
 @Component({
   tag: 'my-name',
   styleUrl: 'my-name.scss'
