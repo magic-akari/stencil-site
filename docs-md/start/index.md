@@ -19,9 +19,7 @@ npm start
 
 ## 测试
 
-为了测试组件，Stencil Application Starter 使用了 Jest 和一个小的用于测试的 API。
-有两种方法可以运行单元测试。通过命令运行测试一次，或者在每次源码改变导致的实时刷新
-(live-reload) 时运行。
+为了测试组件，Stencil Application Starter 使用了 Jest 和一个小的用于测试的 API。有两种方法可以运行单元测试。通过命令运行测试一次，或者在每次源码改变导致的实时刷新 (live-reload) 时运行。
 
 通过命令运行测试一次：
 
@@ -37,7 +35,7 @@ npm run test.watch
 
 ## 编写代码
 
-源码的改变会被实时刷新服务监控到并反馈到页面上。现在让我们对组件做一个小的更改。在你的编辑器中打开`src/components/my-name/my-name.tsx`。
+源码的改变会被实时刷新服务监控到并反馈到页面上。现在让我们对组件做一个小的更改。在你的编辑器中打开 `src/components/my-name/my-name.tsx`。
 
 我们可以忽略大部分内容，直接看`render`方法。让我们更改一下 return 语句中的内容。
 
@@ -52,7 +50,7 @@ render() {
 
 ```
 
-保存文档的时候，组件就会随着我们的更改而更新。如欲了解更多关于组件里发生了什么，请查看<stencil-route-link url="/docs/my-first-component"> component docs</stencil-route-link>
+保存文档的时候，组件就会随着我们的更改而更新。如欲了解更多关于组件里发生了什么，请查看 <stencil-route-link url="/docs/my-first-component">component docs</stencil-route-link>
 
 ## 生产环境部署
 

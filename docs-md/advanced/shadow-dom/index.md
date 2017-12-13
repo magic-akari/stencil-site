@@ -17,7 +17,7 @@ Shadow DOM 被下列浏览器原生支持：
 
 > 对私有化(scoped) css 有疑惑？别担心，我们稍后将会详细解释。
 
-###  Stencil 中到 Shadow DOM
+###  Stencil 中的 Shadow DOM
 
 使用 Stencil 构建 web 组件时候，Shadow DOM 并不是默认开启的。要在 web 组件中开启 Shadow DOM，可以在组件装饰器中使用 `shadow` 参数。  下面是一个例子：
 
@@ -34,7 +34,7 @@ export class ShadowComponent {
 
 ### 使用 Shadow DOM 时需要注意的事项
 
-- 选择器 (QuerySelector)：使用 Shadow DOM 的时候，当你想在 web 组件内查询元素时，你必须使用 `this.el.shadowRoot.querySelector()`。 这是因为在所有在 Shadow DOM 的 web 组件中，所有的 DOM 都创建在 shadowRoot 里。
+- 选择器 (QuerySelector)：使用 Shadow DOM 的时候，当你想在 web 组件内查询元素时，你必须使用 `this.el.shadowRoot.querySelector()`。这是因为在所有在 Shadow DOM 的 web 组件中，所有的 DOM 都创建在 shadowRoot 里。
 
 - 全局样式：要在 Shadow DOM 的组件外部定义一个组件的样式时，你必须使用 [CSS Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables) 或者这个提案 [CSS Shadow Parts](https://tabatkins.github.io/specs/css-shadow-parts/)。
 
@@ -48,7 +48,7 @@ my-element {
 }
 ```
 
-当使用 Shadow DOM 的时候，这个元素的 css 选择器是 `:host` 选择器. 所以, 在你的组件里开启 Shadow DOM 的时候，上边的代码会变成：
+当使用 Shadow DOM 的时候，这个元素的 css 选择器是 `:host` 选择器。所以, 在你的组件里开启 Shadow DOM 的时候，上边的代码会变成：
 
 ```
 :host {

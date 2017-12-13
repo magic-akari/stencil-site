@@ -85,7 +85,7 @@ Stencil 构建的应用，整个应用应该只有一个 `stencil-router` 元素
 </stencil-router>
 ```
 
-When navigating to `/demos/rendering` based on the above configuration, the `demos-page` component will be loaded with a child component `fiber-demo`. They will both be loaded as children of their corresponding stencil-routes but they are not related other than both match the route. Nested routes/components just work.
+根据上边的配置，当导航到 `/demos/rendering` 时，`demos-page` 组件会被载入，并且有一个 `fiber-demo` 子组件。它们都会作为相关的 stencil-routes 的孩子被载入，但是它们互相之间没有关系。嵌套路由/组件同样起作用。
 
 ## 导航
 

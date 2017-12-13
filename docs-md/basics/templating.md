@@ -128,7 +128,7 @@ render(){
 
 循环/迭代同样适用，就像 JavaScript 中一样。
 
-在下边的例子中，我们假设这个组件有一个本地的属性，名为 `todos` 数组，其包含了一组 todo 对象。我们在数组上使用 [map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) 函数来遍历每一个元素，并将其转化为一些别的东西 - 在这里我们转换为了 JSX 。
+在下边的例子中，我们假设这个组件有一个本地的属性，名为 `todos` 数组，其包含了一组 todo 对象。我们在数组上使用 [map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) 函数来遍历每一个元素，并将其转化为一些别的东西 - 在这里我们转换为了 JSX。
 
 ```jsx
 render() {
@@ -148,7 +148,7 @@ render() {
 
 ### 处理用户输入
 
-Stencil 适用原生的 [DOM 事件](https://developer.mozilla.org/en-US/docs/Web/Events).
+Stencil 使用原生的 [DOM 事件](https://developer.mozilla.org/en-US/docs/Web/Events)。
 
 这里有一个关于如何处理按钮点击的例子。注意 [箭头函数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) 的用法。
 
@@ -236,7 +236,7 @@ render() {
     </ul>
   </div>,
 
-  // 第二个顶级元素, 注意上方的都逗号(,)
+  // 第二个顶级元素, 注意上方的逗号(,)
   <div class="another-container">
     ... more html content ...
   </div>

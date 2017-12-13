@@ -45,16 +45,16 @@ exports.config = {
 
 有3种推荐的策略来使用 Stencil 构建的组件。
 
-3中策略都需要共同的第一步，[发布到 NPM](https://docs.npmjs.com/getting-started/publishing-npm-packages)。
+3种策略都需要共同的第一步，[发布到 NPM](https://docs.npmjs.com/getting-started/publishing-npm-packages)。
 
 ### Script 标签
 
-- 在你的 index.html 中放一个和 `<script src='https://unpkg.com/my-name@0.0.1/dist/myname.js'></script>` 类似的标签
+- 在你的 index.html 中放置一个和类似于 `<script src='https://unpkg.com/my-name@0.0.1/dist/myname.js'></script>` 的标签
 - 然后你就可以在任意地方使用你的 template，JSX，html 等等。
 
 ### Node 模块
 - 运行 `npm install my-name --save`
-- 在你的 index.html 中放一个和 `<script src='node_modules/my-name/dist/myname.js'></script>` 类似的标签
+- 在你的 index.html 中放置一个和类似于 `<script src='node_modules/my-name/dist/myname.js'></script>` 的标签
 - 然后你就可以在任意地方使用你的 template，JSX，html 等等。
 
 ### 在 stencil-app-starter 的 app 中
