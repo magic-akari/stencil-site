@@ -1,4 +1,4 @@
-import { Component, Prop, PropDidChange, State } from '@stencil/core';
+import { Component, Prop, PropDidChange, PropWillChange, State } from '@stencil/core';
 
 @Component({
   tag: 'app-marked',
@@ -13,6 +13,11 @@ export class AppMarked {
 
   componentWillLoad() {
     return this.fetchNewContent();
+  }
+
+  @PropWillChange("doc")
+  docWillChange() {
+    // FIXME: https://github.com/ionic-team/stencil/issues/312
   }
 
   @PropDidChange('doc')
