@@ -23,7 +23,7 @@ this.items = [
 
 `...this.items` 语法是 JavaScript 的新特性，可以就地"展开"给定的对象。点击[这里](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator)阅读有更多关于展开操作符的内容。
 
-### 跟新 object
+### 更新 object
 
 展开操作符同样适用于对象 (object)。和数组一样，可变操作不会触发 Stencil 的视图更新，但是返回一个新的对象的拷贝会触发。下面是例子：
 

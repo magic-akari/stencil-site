@@ -121,7 +121,7 @@ export class SiteMenu {
               </li>
               <li>
                 <stencil-route-link url="/docs/distribution">
-                  部署
+                  分发
                 </stencil-route-link>
               </li>
               <li>

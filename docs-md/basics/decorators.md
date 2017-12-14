@@ -230,7 +230,7 @@ export class MyParentComponent {
 }
 ```
 
-`my-parent-component` 组件在 `render()` 函数中引用了 `my-embedded-component` 。
+`my-parent-component` 组件在 `render()` 函数中引用了 `my-embedded-component`。
 
 <stencil-route-link url="/docs/templating" router="#router" custom="true">
   <button class="backButton">
