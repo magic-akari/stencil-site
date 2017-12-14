@@ -108,7 +108,7 @@ it('should work with both the first and the last name', async () => {
       expect(list.children[4].textContent).toEqual('Buttersworth');
     });
 ```
-任何你能在[HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) 用到的都可以在这个测试中用上。
+任何你能在[HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) 用到的方法和属性都可以在这个测试中用上。
 
 
 ## 组件方法测试
