@@ -1,0 +1,34 @@
+<h1 id="-arrays-objects">处理 arrays 和 objects</h1>
+<p>Stencil 组件在属性 (props) 和状态 (state) 变化时会更新。为了高效和简单，Stencil 仅仅比较引用的变化，数组 (array) 和对象 (object) 内部发生数据变化时，不会重新渲染。</p>
+<p>要更新数组 (array) 或者对象 (object) ，使用下边这些，即将成为现代 JavaScript toolbox 的核心部分的技巧吧。</p>
+<h3 id="-arrays">更新 arrays</h3>
+<p>对于数组，这意味着标准的可变操作，诸如 <code>push()</code> 和 <code>unshift()</code> 都不会生效(译者注：不会使得引用改变进而引发重新渲染)。相对地，不可变(译者注：函数式)操作诸如 <code>map()</code> 和 <code>filter()</code> ，以及 ES6 的展开语法，都会返回一个新的数组的拷贝。</p>
+<p>例如，要把一个新的项目入栈数组，那么就用原来的数组创建一个新的数组，把新的值放在末尾。</p>
+<pre><code class="lang-js"><span class="hljs-comment">// 我们原本的数组</span>
+<span class="hljs-keyword">this</span>.items = [<span class="hljs-string">'ionic'</span>, <span class="hljs-string">'stencil'</span>, <span class="hljs-string">'webcomponents'</span>];
+
+<span class="hljs-comment">// 更新数组</span>
+<span class="hljs-keyword">this</span>.items = [
+  ...<span class="hljs-keyword">this</span>.items,
+  <span class="hljs-string">'awesomeness'</span>
+]
+</code></pre>
+<p><code>...this.items</code> 语法是 JavaScript 的新特性，可以就地&quot;展开&quot;给定的对象。点击<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator">这里</a>阅读有更多关于展开操作符的内容。</p>
+<h3 id="-object">更新 object</h3>
+<p>展开操作符同样适用于对象 (object)。和数组一样，可变操作不会触发 Stencil 的视图更新，但是返回一个新的对象的拷贝会触发。下面是例子：</p>
+<pre><code class="lang-js"><span class="hljs-comment">// 我们原本的对象</span>
+let myCoolObject = {<span class="hljs-string">first:</span> <span class="hljs-string">'1'</span>, <span class="hljs-string">second:</span> <span class="hljs-string">'2'</span>}
+
+<span class="hljs-comment">// 更新对象</span>
+myCoolObject = { ...myCoolObject, <span class="hljs-string">third:</span> <span class="hljs-string">'3'</span> }
+</code></pre>
+<p><stencil-route-link url="/stencil-site/docs/forms" router="#router" custom="true">
+  <button class="backButton">
+    返回
+  </button>
+</stencil-route-link></p>
+<p><stencil-route-link url="/stencil-site/docs/testing" custom="true">
+  <button class="nextButton">
+    继续
+  </button>
+</stencil-route-link></p>

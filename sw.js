@@ -1,4 +1,4 @@
-importScripts('workbox-sw.prod.v1.1.0.js');
+importScripts('workbox-sw.prod.v2.1.2.js');
 
 /**
  * DO NOT EDIT THE FILE MANIFEST ENTRY
@@ -19,370 +19,341 @@ importScripts('workbox-sw.prod.v1.1.0.js');
  */
 const fileManifest = [
   {
-    "url": "build/app.global.js",
-    "revision": "12fd254b4d3a6975cf831a688df6749f"
+    "url": "assets/icon/favicon.ico",
+    "revision": "99fc5f75faf5ed2c4f7b53d0034401a8"
   },
   {
-    "url": "build/app.js",
-    "revision": "7bc7f01e16a3433dce04dea43e1bf958"
+    "url": "assets/img/feature-icons.png",
+    "revision": "71a2d41278528e9657bb2946f68bc8c4"
   },
   {
-    "url": "build/app.registry.json",
-    "revision": "835c676de39e5480d559f50ecea64186"
+    "url": "assets/img/icon.png",
+    "revision": "b96ad6e1e0b755c8cd45e6aec40bca25"
   },
   {
-    "url": "build/app\\0lvhq67watcz.css",
-    "revision": "632b0221707b4336872a8c517bffa11a"
+    "url": "assets/img/ionic-os-logo.png",
+    "revision": "49c50777c91ace1a5a88b05ac3fe36ea"
   },
   {
-    "url": "build/app\\3jf5tvmunq93.css",
-    "revision": "a3be73510f1a324f8209569fba275ebd"
+    "url": "assets/img/logo.png",
+    "revision": "0ab79243b610b5eb6f909727799fe1df"
   },
   {
-    "url": "build/app\\3r4slajlcuei.js",
-    "revision": "3941c00b2d856c53d0cfd59e8f3b3113"
+    "url": "assets/img/pwa.png",
+    "revision": "f740988d2e33bdfd48c816fa17ba9f00"
   },
   {
-    "url": "build/app\\3ymfoluojrz1.css",
-    "revision": "a3111e2853d43aa23db2ea394d8dace9"
+    "url": "assets/img/text-logo.png",
+    "revision": "45a94a6c3509dac4b3b16415f2679896"
   },
   {
-    "url": "build/app\\4yjnkw2c0zwz.css",
-    "revision": "9067ef40c6575a2b83d2f3836037fee8"
+    "url": "assets/img/text-logo.svg",
+    "revision": "4f658c2a420d5dd7f30d09c2c87781cf"
   },
   {
-    "url": "build/app\\4yowblhjoq5d.css",
-    "revision": "83b1ef759e7e014c9cd45f1edaa60ae0"
-  },
-  {
-    "url": "build/app\\70p7wwvlegtj.css",
-    "revision": "e6b7a011a6a6da858248b6319f22cd17"
-  },
-  {
-    "url": "build/app\\7kir6zjafbau.css",
-    "revision": "d64d71a667ba56eb095cd667d2e8bcc4"
-  },
-  {
-    "url": "build/app\\7urdugdxqbnq.css",
-    "revision": "65119b31b7d0fa6e9ba223cd8bcd5b9f"
-  },
-  {
-    "url": "build/app\\94ezsitkmuce.js",
-    "revision": "554948908933da2cb84a6e34273a3db1"
-  },
-  {
-    "url": "build/app\\a9zp9z7ke5jh.css",
-    "revision": "42f8b690730917be06d1d04cecc873ef"
-  },
-  {
-    "url": "build/app\\aa8yie9qf6fx.js",
-    "revision": "80606711371c8a86895381f67f3c6df8"
-  },
-  {
-    "url": "build/app\\advpnqatxcre.js",
-    "revision": "ca3be6428e2795d8ac318937d6bbbff6"
-  },
-  {
-    "url": "build/app\\aj6zrwptty8n.js",
-    "revision": "ba96cabc01c23018f3d2b11250be75f6"
-  },
-  {
-    "url": "build/app\\ap20y1espc4x.js",
-    "revision": "8d8119227dca4b9d5d320e64eb94b464"
-  },
-  {
-    "url": "build/app\\app.h1cdl7wyaiaz.js",
-    "revision": "0405502fa7e5cdb01d23ef17f76061a0"
-  },
-  {
-    "url": "build/app\\app.ml37nirqksdk.ce.js",
-    "revision": "7ff91a175828bad62b94e569b022b830"
-  },
-  {
-    "url": "build/app\\b1vxirhlndkp.css",
-    "revision": "fab54a7cc881d42ac21a01d526a2bd52"
-  },
-  {
-    "url": "build/app\\batrkjvwylqf.css",
-    "revision": "bb083575dd013f0eed7e6cbb50747a20"
-  },
-  {
-    "url": "build/app\\bcf77ujyjhvj.css",
-    "revision": "fd8bd0bc4fe6f3ba609c1444387abe0a"
-  },
-  {
-    "url": "build/app\\bguadrwnacsq.js",
-    "revision": "3db760eb016a9172089a0ad56cd52801"
-  },
-  {
-    "url": "build/app\\biyxag35ivur.css",
-    "revision": "055c59cdf03284a81999b569fefa3dfe"
-  },
-  {
-    "url": "build/app\\cbucl6irjrc1.css",
-    "revision": "a40322a637ba4312c7efaf997189c5d3"
-  },
-  {
-    "url": "build/app\\ce7kipooj3fo.js",
-    "revision": "fd36752655fc700c0960b38adebbd6b0"
-  },
-  {
-    "url": "build/app\\cxuytqjdmqyc.css",
-    "revision": "8dfbcf58e12331aacb0f7c6d2bc841ed"
-  },
-  {
-    "url": "build/app\\djnppimy3nlk.css",
-    "revision": "d563a8c3780acbd0cc953ab6e0546950"
-  },
-  {
-    "url": "build/app\\e1oh2wibqnhv.js",
-    "revision": "3fa3cfb2ff1fea5940070882389b30ef"
-  },
-  {
-    "url": "build/app\\fn2im8qqqb9b.css",
-    "revision": "5683d7f4e13306353aee57a1d8aa2c56"
-  },
-  {
-    "url": "build/app\\fvzmx6x7sq7d.js",
-    "revision": "b9b7c125781013402c76c058d0c1219e"
-  },
-  {
-    "url": "build/app\\fy9jsgdjxd2y.css",
-    "revision": "b22ee398ee4211b90bbf2268e2947b36"
-  },
-  {
-    "url": "build/app\\gja1wgzcrlbt.css",
-    "revision": "4cfb59ebfdf0521730b2c97b1db1752e"
-  },
-  {
-    "url": "build/app\\gjriv8dbkjn4.css",
-    "revision": "91490a7e5ef1561ffc61683bfaea7b46"
-  },
-  {
-    "url": "build/app\\gmkiharma048.css",
-    "revision": "73476d4315c91f9eb8e83b8d6cf7a17b"
-  },
-  {
-    "url": "build/app\\gvsrsexcw4fb.css",
-    "revision": "50ee2bb026f0e936bd467bb80e0045e0"
-  },
-  {
-    "url": "build/app\\hzwxaxykomyq.js",
-    "revision": "e365dd427ddffdb8bb54ab0157a95ad2"
-  },
-  {
-    "url": "build/app\\ig4ukbngpbyi.css",
-    "revision": "25845db92dc20e83320621724a172d58"
-  },
-  {
-    "url": "build/app\\inuypkmrxuvc.css",
-    "revision": "39b3b58760e7bbc4915b5223ec4b182c"
-  },
-  {
-    "url": "build/app\\ip1uzk7it107.js",
-    "revision": "d239d44bc3fc145e122767830ceb8a5b"
-  },
-  {
-    "url": "build/app\\istnlxtzjlso.js",
-    "revision": "a79a358cf0e8b9e656fa9cd8ca8b1bbb"
-  },
-  {
-    "url": "build/app\\iyaucfekjft4.css",
-    "revision": "3382b4e83d5e2d9b6ab799d3bb2ddc95"
-  },
-  {
-    "url": "build/app\\j17dcfrcqmrk.js",
-    "revision": "6a7198cbaaa9b6b797019f46759493ec"
-  },
-  {
-    "url": "build/app\\j7nnnvwngtie.css",
-    "revision": "8d55b97f86db692865174f0aa2ed02f4"
-  },
-  {
-    "url": "build/app\\kjmw0upsvmsz.css",
-    "revision": "7ac5c3c0d9b10bfd40e75ffae9deeb5c"
-  },
-  {
-    "url": "build/app\\kktxuccv21on.css",
-    "revision": "21af0d088549951525243a6ae88c62d8"
-  },
-  {
-    "url": "build/app\\l1bjyggsvwvd.css",
-    "revision": "6f134d04d5852c5be3adfc5c73cf1934"
-  },
-  {
-    "url": "build/app\\larpbgqrpkno.css",
-    "revision": "2e2ca815dc81a40bbbfa4dc6f5b81b26"
-  },
-  {
-    "url": "build/app\\ldue8ztl68p3.css",
-    "revision": "bd150a629f6be2c9616eede289647f90"
-  },
-  {
-    "url": "build/app\\md8jmqpuwvpw.css",
-    "revision": "2458ced2e34f66e179e96a88b734a558"
-  },
-  {
-    "url": "build/app\\mgekeaoebvgm.css",
-    "revision": "cff5bddd81d5656186386d45ec100f30"
-  },
-  {
-    "url": "build/app\\mldishtevefa.js",
-    "revision": "0a5ab271f11e542eaad76c81fd6b1816"
-  },
-  {
-    "url": "build/app\\n0efedrwwekl.css",
-    "revision": "1ef55d7630e70492712ea6970de2c746"
-  },
-  {
-    "url": "build/app\\n7znxsls9wwm.css",
-    "revision": "bcece7d8be102e0915e26726d680b53e"
-  },
-  {
-    "url": "build/app\\nalozgy4kluw.css",
-    "revision": "a04454b9e82f65a5444fa038d2034dac"
-  },
-  {
-    "url": "build/app\\nqskxaua4wkp.css",
-    "revision": "56319a91cd2b6fa36c8f1af333a96a33"
-  },
-  {
-    "url": "build/app\\o5rsifoubnqi.css",
-    "revision": "b8075a82a5e0381d9d3711838c7aeddb"
-  },
-  {
-    "url": "build/app\\o8ztoclokvgn.css",
-    "revision": "e0d71061cb687399886af1da32b655e8"
-  },
-  {
-    "url": "build/app\\omguy6ftbyjk.css",
-    "revision": "ea5ac04a759f35ad5e1a9e95e1865928"
-  },
-  {
-    "url": "build/app\\oqytulazn3kr.css",
-    "revision": "0893e9d0ec18ae3fad320f09894c977e"
-  },
-  {
-    "url": "build/app\\ovc1rjpbwaoe.css",
-    "revision": "f532f8ffdeb1410f3214a5a1e7092585"
-  },
-  {
-    "url": "build/app\\p9msvkhkzrcf.js",
-    "revision": "e2e0c75ebf9b768ce5aba5fac7b9f653"
-  },
-  {
-    "url": "build/app\\pl9omrfn2p0g.css",
-    "revision": "221168b65fe873e68ebf7a53665ebae2"
-  },
-  {
-    "url": "build/app\\pnjcxhfyydkd.css",
-    "revision": "952035e924a45aa4af47208bd77c7668"
-  },
-  {
-    "url": "build/app\\qe3rrrtiqxpf.css",
-    "revision": "510fcc748646f464d406f86f620aed89"
-  },
-  {
-    "url": "build/app\\qnsivgokm6pk.css",
-    "revision": "fbddcd793af09959a1f5dc2ff31b93b9"
-  },
-  {
-    "url": "build/app\\qyz79l90erow.css",
-    "revision": "ab2b3812baddbddd8222ee5f0d4fe8d8"
-  },
-  {
-    "url": "build/app\\rfx4aywc7lvd.css",
-    "revision": "39e3a7d2e7b361b5d4ba30bb7a9b349a"
-  },
-  {
-    "url": "build/app\\rivvbutlfcti.css",
-    "revision": "a919ee14acc57fc26f55338d1cbfa64b"
-  },
-  {
-    "url": "build/app\\ssu9bfpodst2.css",
-    "revision": "48ffe4a3bcc941a9d77c91131f1a93b8"
-  },
-  {
-    "url": "build/app\\t9njj0nfyp8i.css",
-    "revision": "b5a23e24022c2cb65fa8a160317c5390"
-  },
-  {
-    "url": "build/app\\te5iry1nwt6s.js",
-    "revision": "c9491d926b87f54951dc73b05a9175e9"
-  },
-  {
-    "url": "build/app\\uabwpckbuhf4.js",
-    "revision": "5a2416d28cee658e902c93020e1c280e"
-  },
-  {
-    "url": "build/app\\uaiuv0oaakrp.css",
-    "revision": "1f81905dd13f91d4f02cc418aea2093e"
-  },
-  {
-    "url": "build/app\\vendor\\swiper.js",
-    "revision": "f44ae3024a4323c4f98e7b69cefeee47"
-  },
-  {
-    "url": "build/app\\vqfgf223uwpn.css",
-    "revision": "926e55542d48bee5b7d7c435cb61ca44"
-  },
-  {
-    "url": "build/app\\vvxutv45sbdw.js",
-    "revision": "571ca954364cd8482c14926c43d7dd52"
-  },
-  {
-    "url": "build/app\\wildvbwk19fm.js",
-    "revision": "1e695a4dfe4eef0a6d3bfe577bbdf46a"
-  },
-  {
-    "url": "build/app\\xaqbuxayh8cr.css",
-    "revision": "01056b9fa836471012ba899b30c9e1a1"
-  },
-  {
-    "url": "build/app\\xatrl6i8srrd.js",
-    "revision": "31b14a437d10e6f51af69c3315d6c363"
-  },
-  {
-    "url": "build/app\\xf6npbqrpots.js",
-    "revision": "7db5028ee9b0768596e1410db6dee827"
-  },
-  {
-    "url": "build/app\\y83oruhjwmy7.js",
-    "revision": "7d9d481c3a8e902bc6808b539a101856"
-  },
-  {
-    "url": "build/app\\ycn2oleabevn.css",
-    "revision": "5c901bd8c483299fd9bda812698fa303"
-  },
-  {
-    "url": "build/app\\yngvd9lxgl9l.css",
-    "revision": "4cabf5544c173c453518f0f7be3e7ef4"
-  },
-  {
-    "url": "build/app\\yvum2wrsl4y5.css",
-    "revision": "d9642ccb68d79b5fed94e7bd8be94dff"
-  },
-  {
-    "url": "favicon.ico",
-    "revision": "d2f619d796fbe8bed6200da2691aa5b6"
-  },
-  {
-    "url": "img/logo.png",
-    "revision": "21ba838516e785b6bc724260c55edc26"
-  },
-  {
-    "url": "img/text-logo.png",
-    "revision": "983fa7783e22e13fa84159ee8c8ddd1a"
-  },
-  {
-    "url": "index.html",
-    "revision": "b9419bf7d1c43acbfff9c5a2cadfda90"
+    "url": "assets/img/video-icon.png",
+    "revision": "6f27af15cab04aafd7193b76825c2eac"
   },
   {
     "url": "manifest.json",
-    "revision": "e304b537278c8e2e960f1a40616fa361"
+    "revision": "c196d300ffd65908f26a5b316c8aa290"
+  },
+  {
+    "url": "stencil-site/assets/icon/favicon.ico",
+    "revision": "99fc5f75faf5ed2c4f7b53d0034401a8"
+  },
+  {
+    "url": "stencil-site/assets/img/feature-icons.png",
+    "revision": "71a2d41278528e9657bb2946f68bc8c4"
+  },
+  {
+    "url": "stencil-site/assets/img/icon.png",
+    "revision": "b96ad6e1e0b755c8cd45e6aec40bca25"
+  },
+  {
+    "url": "stencil-site/assets/img/ionic-os-logo.png",
+    "revision": "49c50777c91ace1a5a88b05ac3fe36ea"
+  },
+  {
+    "url": "stencil-site/assets/img/logo.png",
+    "revision": "0ab79243b610b5eb6f909727799fe1df"
+  },
+  {
+    "url": "stencil-site/assets/img/pwa.png",
+    "revision": "f740988d2e33bdfd48c816fa17ba9f00"
+  },
+  {
+    "url": "stencil-site/assets/img/text-logo.png",
+    "revision": "45a94a6c3509dac4b3b16415f2679896"
+  },
+  {
+    "url": "stencil-site/assets/img/text-logo.svg",
+    "revision": "4f658c2a420d5dd7f30d09c2c87781cf"
+  },
+  {
+    "url": "stencil-site/assets/img/video-icon.png",
+    "revision": "6f27af15cab04aafd7193b76825c2eac"
+  },
+  {
+    "url": "stencil-site/build/app.js",
+    "revision": "605f141bfe3aa6fcff40f95e5d206a49"
+  },
+  {
+    "url": "stencil-site/build/app/3k7lx5cn.js",
+    "revision": "5471e67eeaec58fc88a9664cf34c30fd"
+  },
+  {
+    "url": "stencil-site/build/app/5e3mm8py.js",
+    "revision": "d8783a51d88a5fe606e0bd94a40261be"
+  },
+  {
+    "url": "stencil-site/build/app/5o6kav7n.js",
+    "revision": "9eedeab42fb55e32d3960be5da8e6962"
+  },
+  {
+    "url": "stencil-site/build/app/6h3gn76l.js",
+    "revision": "b46ee5986c7fda07d6efbd4caa777cde"
+  },
+  {
+    "url": "stencil-site/build/app/9w3o4rop.js",
+    "revision": "0fdddf71a2b23fcbbebb94d4d0e038d8"
+  },
+  {
+    "url": "stencil-site/build/app/9yov4blo.js",
+    "revision": "1f762f3dc2f320f07dd097e600cf4a38"
+  },
+  {
+    "url": "stencil-site/build/app/app.6pl4uvpu.js",
+    "revision": "68a51619098a3d09161321d8b1db8237"
+  },
+  {
+    "url": "stencil-site/build/app/app.anvyajjr.js",
+    "revision": "d13dd45ab272db42afb14881a4cba8d0"
+  },
+  {
+    "url": "stencil-site/build/app/app.f0pvtd4s.js",
+    "revision": "b1b565ca8cec0025d573ba7c652d8977"
+  },
+  {
+    "url": "stencil-site/build/app/app.global.js",
+    "revision": "bede57bea0ca4c2f0b376b3e84483e68"
+  },
+  {
+    "url": "stencil-site/build/app/app.registry.json",
+    "revision": "db6a344f4f04b0a0c0e397d18d713668"
+  },
+  {
+    "url": "stencil-site/build/app/caxvifpw.js",
+    "revision": "e53833e2d935f9fae7cc915ab427dbfa"
+  },
+  {
+    "url": "stencil-site/build/app/cv7cbtbi.js",
+    "revision": "b425d7fba0b1c25730cf13a34af6b556"
+  },
+  {
+    "url": "stencil-site/build/app/iywtdof8.js",
+    "revision": "cebf5978de92074deed7af4f0bb39f58"
+  },
+  {
+    "url": "stencil-site/build/app/mdjj9o4m.js",
+    "revision": "81f2e3373bcdf9fef7705e1424155d26"
+  },
+  {
+    "url": "stencil-site/build/app/mkhc5edk.js",
+    "revision": "24378c3e654f3092e277651b4e19525f"
+  },
+  {
+    "url": "stencil-site/build/app/orsdhirh.js",
+    "revision": "7438a81d2db06c201be7ba516d9071ca"
+  },
+  {
+    "url": "stencil-site/build/app/u02wzu0j.js",
+    "revision": "4a5acb93ef42daa664e43dfb9cc7e4e8"
+  },
+  {
+    "url": "stencil-site/build/app/wnjwjl0u.js",
+    "revision": "147aa54f344dde453b2f5c36419b4b9f"
+  },
+  {
+    "url": "stencil-site/demos/index.html",
+    "revision": "e1725185e6c0380615bc965ac888512b"
+  },
+  {
+    "url": "stencil-site/docs-content/addons/stencil-router.html",
+    "revision": "f3b1fcb4a03c84137a3e11db07c2ee59"
+  },
+  {
+    "url": "stencil-site/docs-content/advanced/angular-integration/index.html",
+    "revision": "5108186f145581ee5cb304cab8481e7a"
+  },
+  {
+    "url": "stencil-site/docs-content/advanced/distribution/index.html",
+    "revision": "aae1ffabfb5476ef606066befa98a67b"
+  },
+  {
+    "url": "stencil-site/docs-content/advanced/pre-rendering/index.html",
+    "revision": "8c709f3d04a5c78e52675f78e94602e5"
+  },
+  {
+    "url": "stencil-site/docs-content/advanced/service-worker/index.html",
+    "revision": "14727a9e52364658ff9c8559ed7be7fc"
+  },
+  {
+    "url": "stencil-site/docs-content/advanced/shadow-dom/index.html",
+    "revision": "40d0f7942d22caf3c0d206980ac7c8fc"
+  },
+  {
+    "url": "stencil-site/docs-content/advanced/ssr/index.html",
+    "revision": "4e7dc7f73885a7ba661275094b6aeaf0"
+  },
+  {
+    "url": "stencil-site/docs-content/basics/component-lifecycle.html",
+    "revision": "08f5d35a82a3c8718b0b62f30b10cb56"
+  },
+  {
+    "url": "stencil-site/docs-content/basics/decorators.html",
+    "revision": "66e8910a1cc61201d25d806fafb6d278"
+  },
+  {
+    "url": "stencil-site/docs-content/basics/events.html",
+    "revision": "e9964bac263d3335fa8634ffdf032457"
+  },
+  {
+    "url": "stencil-site/docs-content/basics/forms.html",
+    "revision": "8c9e9271709a838ba6dcb6fcabba4f75"
+  },
+  {
+    "url": "stencil-site/docs-content/basics/handling-arrays.html",
+    "revision": "a0a60aa3ff8f4a868ac71a69fe25b167"
+  },
+  {
+    "url": "stencil-site/docs-content/basics/my-first-component.html",
+    "revision": "9bc06b3e2c49ab0b7e55d18f9a0eb070"
+  },
+  {
+    "url": "stencil-site/docs-content/basics/stencil-config.html",
+    "revision": "9c30f7f5cd354e52dbf5273faa6d9122"
+  },
+  {
+    "url": "stencil-site/docs-content/basics/templating.html",
+    "revision": "3fffd451285b99265f2f1eb8577b32bf"
+  },
+  {
+    "url": "stencil-site/docs-content/basics/testing.html",
+    "revision": "3bec6a8ced3ecc9af8465af8609342c0"
+  },
+  {
+    "url": "stencil-site/docs-content/compiler/config.html",
+    "revision": "f9c2cda306801bb1b38562175b7719d6"
+  },
+  {
+    "url": "stencil-site/docs-content/intro/browsers.html",
+    "revision": "5bcb085e3fe680101f43f47a6d316b57"
+  },
+  {
+    "url": "stencil-site/docs-content/intro/index.html",
+    "revision": "bb39eadc4129f89268fb837732c4c2a8"
+  },
+  {
+    "url": "stencil-site/docs-content/start/index.html",
+    "revision": "ace65562a1181d10cd4c21a48c8d702a"
+  },
+  {
+    "url": "stencil-site/docs/angular-integration/index.html",
+    "revision": "9f8a99f281f8a0f2e079c18b12892845"
+  },
+  {
+    "url": "stencil-site/docs/browser-support/index.html",
+    "revision": "66bb1cdf8dd7677a626d166a626487d3"
+  },
+  {
+    "url": "stencil-site/docs/component-lifecycle/index.html",
+    "revision": "03ea8f04dca522c539c9efa80962a5ba"
+  },
+  {
+    "url": "stencil-site/docs/decorators/index.html",
+    "revision": "8f90021f45271b16fc608550f0a5af89"
+  },
+  {
+    "url": "stencil-site/docs/distribution/index.html",
+    "revision": "488575851076a775bfa57595eed4d352"
+  },
+  {
+    "url": "stencil-site/docs/events/index.html",
+    "revision": "198bda1f91de031fe83ff51324632438"
+  },
+  {
+    "url": "stencil-site/docs/forms/index.html",
+    "revision": "0e75ec7d5aa41502b910f7d942c5d919"
+  },
+  {
+    "url": "stencil-site/docs/getting-started/index.html",
+    "revision": "874920cdc186f79971361eb84eb618d0"
+  },
+  {
+    "url": "stencil-site/docs/handling-arrays/index.html",
+    "revision": "c6c72787dcd1d92269be54717c320eac"
+  },
+  {
+    "url": "stencil-site/docs/intro/index.html",
+    "revision": "bfbfdf39803242e195459272713fe3c1"
+  },
+  {
+    "url": "stencil-site/docs/my-first-component/index.html",
+    "revision": "4582eb8dec019abcdef30bdb9ce52e55"
+  },
+  {
+    "url": "stencil-site/docs/prerendering/index.html",
+    "revision": "1a33c771d14a121d0b32d2a87a7e22ff"
+  },
+  {
+    "url": "stencil-site/docs/routing/index.html",
+    "revision": "7bcf49086c2c85d3dfe340e0a8026179"
+  },
+  {
+    "url": "stencil-site/docs/server-side-rendering/index.html",
+    "revision": "37faa32adda349c3ead8fbcaae741209"
+  },
+  {
+    "url": "stencil-site/docs/service-workers/index.html",
+    "revision": "3d85875613d40149cbd88f08b1ca7d8e"
+  },
+  {
+    "url": "stencil-site/docs/shadow-dom/index.html",
+    "revision": "70e48c0edb1ef4805ba431f6f8c0c51a"
+  },
+  {
+    "url": "stencil-site/docs/stencil-config/index.html",
+    "revision": "6c0f158658ad395cadff833e3baf6e4e"
+  },
+  {
+    "url": "stencil-site/docs/templating/index.html",
+    "revision": "ed355c6193d33dc2ed617cc45e65b858"
+  },
+  {
+    "url": "stencil-site/docs/testing/index.html",
+    "revision": "4ed856f93bf6c2c4a525eea77f4abd05"
+  },
+  {
+    "url": "stencil-site/index.html",
+    "revision": "a7de365eb1a5e9bd8bffc19251a40893"
+  },
+  {
+    "url": "stencil-site/manifest.json",
+    "revision": "c196d300ffd65908f26a5b316c8aa290"
+  },
+  {
+    "url": "stencil-site/pwa/index.html",
+    "revision": "c90ad59d25140c1c4868ee66277dc3a2"
+  },
+  {
+    "url": "stencil-site/resources/index.html",
+    "revision": "a44e5e5d35385e6f5da9a1804125b4ff"
   }
 ];
 
-const workboxSW = new self.WorkboxSW();
+const workboxSW = new self.WorkboxSW({
+  "skipWaiting": true,
+  "clientsClaim": true
+});
 workboxSW.precache(fileManifest);

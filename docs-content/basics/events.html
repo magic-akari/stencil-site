@@ -1,0 +1,78 @@
+<h1 id="-">事件</h1>
+<p>使用事件装饰器，可以让组件可以发送数据和事件。</p>
+<p>使用 <code>@Event()</code> 装饰器，可以给其他组件发送<a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events">自定义 DOM 事件</a>。</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { Event, EventEmitter } <span class="hljs-keyword">from</span> <span class="hljs-string">'@stencil/core'</span>;
+
+...
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> {</span>
+
+  @Event() todoCompleted: EventEmitter;
+
+  todoCompletedHandler(todo: Todo) {
+    <span class="hljs-keyword">this</span>.todoCompleted.emit(todo);
+  }
+}
+</code></pre>
+<p>这段代码会发送一个名为 <code>todoCompleted</code> 的自定义 DOM 事件。</p>
+<h2 id="-">监听事件</h2>
+<p><code>Listen()</code> 装饰器用来监听来自 <code>@Events</code> 的事件。</p>
+<p>在下面的例子中，假设子组件 <code>TodoList</code> 使用 <code>EventEmitter</code> 发送了一个名为 <code>todoCompleted</code> 的事件。</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { Listen } <span class="hljs-keyword">from</span> <span class="hljs-string">'@stencil/core'</span>;
+
+...
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoApp</span> {</span>
+
+  @Listen(<span class="hljs-string">'todoCompleted'</span>)
+  todoCompletedHandler(event: CustomEvent) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Received the custom todoCompleted event: '</span>, event.detail);
+  }
+}
+</code></pre>
+<p>监听器也可以被注册来专门处理特定元素的事件。
+这对监听整个应用范围的事件很有用。
+下面的例子，我们会监听 body 的滚动事件。</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { Listen } <span class="hljs-keyword">from</span> <span class="hljs-string">'@stencil/core'</span>;
+
+...
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> {</span>
+
+  @Listen(<span class="hljs-string">'body:scroll'</span>)
+  handleScroll(ev) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'the body was scrolled'</span>, ev);
+  }
+}
+</code></pre>
+<p>要处理键盘事件，你可以在 <code>@Listen()</code> 中使用 <code>keydown</code> 事件并分辨出是哪一个 keycode, Stencil 同时提供了一些 keycode 的常量。</p>
+<pre><code class="lang-typescript"><span class="hljs-variable">@Listen</span>(<span class="hljs-string">'keydown'</span>)
+handleKeyDown(ev){
+  <span class="hljs-selector-tag">if</span>(ev.keyCode === <span class="hljs-number">40</span>){
+    <span class="hljs-selector-tag">console</span><span class="hljs-selector-class">.log</span>(<span class="hljs-string">'down arrow pressed'</span>)
+  }
+}
+
+@<span class="hljs-selector-tag">Listen</span>(<span class="hljs-string">'keydown.up'</span>)
+<span class="hljs-selector-tag">handleUpArrow</span>(ev){
+  <span class="hljs-selector-tag">console</span><span class="hljs-selector-class">.log</span>(<span class="hljs-string">'will fire when up arrow is pressed'</span>);
+}
+</code></pre>
+<p>Stencil 提供了如下的常量，可以通过 <code>keydown.&lt;CONSTANT&gt;</code> 的方式来访问</p>
+<ul>
+<li>enter</li>
+<li>escape</li>
+<li>space</li>
+<li>tab</li>
+<li>left</li>
+<li>up</li>
+<li>right</li>
+<li>down</li>
+</ul>
+<p><stencil-route-link url="/stencil-site/docs/decorators" router="#router" custom="true">
+  <button class="backButton">
+    返回
+  </button>
+</stencil-route-link></p>
+<p><stencil-route-link url="/stencil-site/docs/component-lifecycle" custom="true">
+  <button class="nextButton">
+    继续
+  </button>
+</stencil-route-link></p>

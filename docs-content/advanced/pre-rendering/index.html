@@ -1,0 +1,34 @@
+<h1 id="-">预渲染</h1>
+<p>一个使用 Stencil 的优点，就是它允许你对组件进行预渲染。在构建时预渲染生成静态的 html+css 文件，可以直接喂给浏览器，并与真正的 web 组件融合。举个例子，再这个页面右键查看源码，你能看到它是什么样子的。</p>
+<p>预渲染功能内置在了 Stencil 编译器中，并且在 <a href="https://github.com/ionic-team/stencil-app-starter">app starter</a> 中默认为生产模式开启。</p>
+<h3 id="-">优点</h3>
+<ul>
+<li>更快的<a href="https://developers.google.com/web/tools/lighthouse/audits/first-meaningful-paint">首次有意义绘制</a></li>
+<li>对 SEO 友好</li>
+<li>当 JavaScript 被用户禁用时，仍然提供某些功能(译者注：循序渐进，平稳退化)</li>
+</ul>
+<h3 id="-">需要注意的事项</h3>
+<ul>
+<li>通过 api 获取的数据不应该被预渲染，因为它们是动态的，随时会改变。</li>
+</ul>
+<p>Stencil 提供了一个 <code>isServer</code> 实用变量来告诉预渲染跳过这部分代码。这里有一个例子展示了怎样使用它：</p>
+<pre><code><span class="hljs-meta">@Prop</span>({ <span class="hljs-string">context:</span> <span class="hljs-string">'isServer'</span> }) <span class="hljs-keyword">private</span> <span class="hljs-string">isServer:</span> <span class="hljs-keyword">boolean</span>;
+
+componentWillLoad() {
+  <span class="hljs-comment">// 在浏览器中 isServer 的值是 false</span>
+  <span class="hljs-comment">// 在预渲染中的值是 true</span>
+
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.isServer === <span class="hljs-literal">false</span>) {
+    fetch(<span class="hljs-string">'someUrl'</span>).then(...)
+  }
+}
+</code></pre><p><stencil-route-link url="/stencil-site/docs/stencil-config" router="#router" custom="true">
+  <button class="backButton">
+    返回
+  </button>
+</stencil-route-link></p>
+<p><stencil-route-link url="/stencil-site/docs/server-side-rendering" custom="true">
+  <button class="nextButton">
+    继续
+  </button>
+</stencil-route-link></p>

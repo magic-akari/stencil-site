@@ -64,9 +64,14 @@ which can be used. Collections can be published and installed via <code>npm</cod
 <td><code>build/</code></td>
 </tr>
 <tr>
-<td><code>generateCollection</code></td>
+<td><code>generateDistribution</code></td>
 <td>Generate a library collection for sharing.</td>
 <td><code>false</code></td>
+</tr>
+<tr>
+<td><code>generateWWW</code></td>
+<td>Generate a WWW directory</td>
+<td><code>true</code></td>
 </tr>
 <tr>
 <td><code>collectionDir</code></td>
@@ -88,12 +93,17 @@ which can be used. Collections can be published and installed via <code>npm</cod
 <td>Global source file to bundled with the core.</td>
 <td><code>null</code></td>
 </tr>
+<tr>
+<td><code>serviceWorker</code></td>
+<td>Service worker workbox config</td>
+<td><a href="#service-worker">Service Worker Config</a></td>
+</tr>
 </tbody>
 </table>
 <h3 id="prerender-index">Prerender Index</h3>
 <p>By default, <code>www/index.html</code> (the <code>indexHtmlSrc</code> config property), is automatically prerendered.
 This means that the index.html already has all of the HTML the client-side code &quot;would&quot; have created,
-except it was done it at build-time. It also inlines the exact CSS needed for the HTML, and inlines
+except it was done at build-time. It also inlines the exact CSS needed for the HTML, and inlines
 the loader script. Prerendering the index.html file allows for blazing fast startup times, while also
 allowing the app to become a Single Page App.</p>
 <table>
@@ -144,3 +154,13 @@ allowing the app to become a Single Page App.</p>
 </code></pre>
 <h3 id="global">Global</h3>
 <p>In general, apps should strive to not have anything that is global across all components. Components should be self-contained and should not be dependent on anything else. That said, there may be a few cases where a global property or object is needed. In Ionic&#39;s case, all components need access to its global <code>config</code> object. By using the <code>global</code> config property, Ionic&#39;s stencil.config.js file points to an entry typescript file, that gets bundled into the core.</p>
+<h3 id="service-worker">Service Worker</h3>
+<p>The service worker config can use any of the Workbox config options found <a href="https://workboxjs.org/reference-docs/latest/module-workbox-build.html#.Configuration">here</a>. Our default config is as follows: </p>
+<pre><code><span class="hljs-string">{</span>
+<span class="hljs-attr">  skipWaiting:</span> <span class="hljs-literal">true</span><span class="hljs-string">,</span>
+<span class="hljs-attr">  clientsClaim:</span> <span class="hljs-literal">true</span><span class="hljs-string">,</span>
+<span class="hljs-attr">  globPatterns:</span> <span class="hljs-string">[</span>
+    <span class="hljs-string">'**/*.{js,css,json,html,ico,png,svg}'</span>
+  <span class="hljs-string">]</span>
+<span class="hljs-string">};</span>
+</code></pre>

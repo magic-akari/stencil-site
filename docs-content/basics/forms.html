@@ -1,0 +1,96 @@
+<h1 id="-">表单</h1>
+<h3 id="-">基础表单</h3>
+<p>这里有一个基础表单组件的例子：</p>
+<pre><code class="lang-jsx">@Component({
+  tag: <span class="hljs-string">'my-name'</span>,
+  styleUrl: <span class="hljs-string">'my-name.scss'</span>
+})
+export <span class="hljs-keyword">class</span> <span class="hljs-title">MyName</span> {
+
+  @State() <span class="hljs-keyword">value</span>: <span class="hljs-keyword">string</span>;
+
+  handleSubmit(e) {
+    e.preventDefault()
+    console.log(<span class="hljs-keyword">this</span>.<span class="hljs-keyword">value</span>);
+    <span class="hljs-comment">// 向我们的后端发送数据</span>
+  }
+
+  handleChange(<span class="hljs-keyword">event</span>) {
+    <span class="hljs-keyword">this</span>.<span class="hljs-keyword">value</span> = <span class="hljs-keyword">event</span>.target.<span class="hljs-keyword">value</span>;
+  }
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;form onSubmit={(e) =&gt; <span class="hljs-keyword">this</span>.handleSubmit(e)}&gt;
+        &lt;label&gt;
+          Name:
+          &lt;input type=<span class="hljs-string">"text"</span> <span class="hljs-keyword">value</span>={<span class="hljs-keyword">this</span>.<span class="hljs-keyword">value</span>} onInput={() =&gt; <span class="hljs-keyword">this</span>.handleChange(<span class="hljs-keyword">event</span>)} /&gt;
+        &lt;/label&gt;
+        &lt;input type=<span class="hljs-string">"submit"</span> <span class="hljs-keyword">value</span>=<span class="hljs-string">"Submit"</span> /&gt;
+      &lt;/form&gt;
+    );
+  }
+}
+</code></pre>
+<p>让我们看看这里发生了什么。首先我们把 input 组件的 value 值绑定到了以一个 state 变量 <code>this.value</code> 上。然后我们在 <code>handleChange</code> 方法中，把新的值赋给了我们的 state 变量，并把这个方法绑定在了 <code>onInput</code> 上。每一次用户的键入都会触发调用 <code>onInput</code>。</p>
+<h3 id="-">高级表单</h3>
+<p>这里有一个更加高级表单组件的例子：</p>
+<pre><code class="lang-jsx">@Component({
+  tag: <span class="hljs-string">'my-name'</span>,
+  styleUrl: <span class="hljs-string">'my-name.scss'</span>
+})
+export <span class="hljs-keyword">class</span> <span class="hljs-title">MyName</span> {
+
+  @State() <span class="hljs-keyword">value</span>: <span class="hljs-keyword">string</span>;
+  @State() selectValue: <span class="hljs-keyword">string</span>;
+
+  handleSubmit() {
+    console.log(<span class="hljs-keyword">this</span>.<span class="hljs-keyword">value</span>);
+  }
+
+  handleChange(<span class="hljs-keyword">event</span>) {
+    <span class="hljs-keyword">this</span>.<span class="hljs-keyword">value</span> = <span class="hljs-keyword">event</span>.target.<span class="hljs-keyword">value</span>;
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">event</span>.target.validity.typeMismatch) {
+      console.log(<span class="hljs-string">'this element is not valid'</span>)
+    }
+  }
+
+  handleSelect(<span class="hljs-keyword">event</span>) {
+    console.log(<span class="hljs-keyword">event</span>.target.<span class="hljs-keyword">value</span>);
+    <span class="hljs-keyword">this</span>.selectValue = <span class="hljs-keyword">event</span>.target.<span class="hljs-keyword">value</span>;
+  }
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;form onSubmit={(e) =&gt; <span class="hljs-keyword">this</span>.handleSubmit(e)}&gt;
+        &lt;label&gt;
+          Email:
+          &lt;input type=<span class="hljs-string">"email"</span> <span class="hljs-keyword">value</span>={<span class="hljs-keyword">this</span>.<span class="hljs-keyword">value</span>} onInput={(e) =&gt; <span class="hljs-keyword">this</span>.handleChange(e)} /&gt;
+        &lt;/label&gt;
+
+        &lt;<span class="hljs-keyword">select</span> <span class="hljs-keyword">value</span>={<span class="hljs-keyword">this</span>.selectValue} onInput={() =&gt; <span class="hljs-keyword">this</span>.handleSelect(<span class="hljs-keyword">event</span>)}&gt;
+          &lt;option <span class="hljs-keyword">value</span>=<span class="hljs-string">"volvo"</span>&gt;Volvo&lt;/option&gt;
+          &lt;option <span class="hljs-keyword">value</span>=<span class="hljs-string">"saab"</span>&gt;Saab&lt;/option&gt;
+          &lt;option <span class="hljs-keyword">value</span>=<span class="hljs-string">"mercedes"</span>&gt;Mercedes&lt;/option&gt;
+          &lt;option <span class="hljs-keyword">value</span>=<span class="hljs-string">"audi"</span>&gt;Audi&lt;/option&gt;
+        &lt;/<span class="hljs-keyword">select</span>&gt;
+
+        &lt;input type=<span class="hljs-string">"submit"</span> <span class="hljs-keyword">value</span>=<span class="hljs-string">"Submit"</span> /&gt;
+      &lt;/form&gt;
+    );
+  }
+}
+</code></pre>
+<p>正如你所见，这个表单更加高级，因为它有一个 select 组件和一个输入 email 的组件。同时我们在 email 的 <code>handleChange</code> 方法中检验输入合法性。正如你所见，我们就像处理 input 元素一样处理 <code>select</code> 元素。</p>
+<p>对于输入合法性验证，我们使用 <a href="https://www.w3.org/TR/html5/forms.html#the-constraint-validation-api">constraint validation api</a> ，这是浏览器内置的用来检验用户是否真的输入 email 的方法。</p>
+<p><stencil-route-link url="/stencil-site/docs/component-lifecycle" router="#router" custom="true">
+  <button class="backButton">
+    返回
+  </button>
+</stencil-route-link></p>
+<p><stencil-route-link url="/stencil-site/docs/handling-arrays" custom="true">
+  <button class="nextButton">
+    继续
+  </button>
+</stencil-route-link></p>

@@ -1,0 +1,115 @@
+<h1 id="-">测试</h1>
+<p>Stencil 让你的组件通过 Jset 和 Stencil 单元测试框架来进行单元测试变得更加简单。
+这个测试框架只需要非常少的配置并提供一个由两个函数组成的极小的API：
+<code>render()</code> 和 <code>flush()</code>。Stencil 的单元测试框架能测试组件的渲染过程和定义在组件类中的方法。</p>
+<h2 id="-">测试配置</h2>
+<p>要想让一个 Stencil 组件工程能够运行单元测试，需要在 <code>package.json</code> 文件中进行一些少量的配置。所有的配置都包含在了 Stencil App Starter 和 Stencil Component Starter 中，如果你要用这些模板来开始你的项目，你就不需要再添加任何东西。这里介绍的信息仅供查阅。</p>
+<p>Jest 需要被安装为开发依赖 (devDependencies)：</p>
+<pre><code class="lang-json">  <span class="hljs-string">"devDependencies"</span>: {
+      ...
+      <span class="hljs-string">"@types/jest"</span>: <span class="hljs-string">"^21.1.1"</span>,
+      <span class="hljs-string">"jest"</span>: <span class="hljs-string">"^21.2.1"</span>
+  },
+</code></pre>
+<p>设置 NPM 脚本来运行这些测试：</p>
+<pre><code class="lang-json">  <span class="hljs-string">"scripts"</span>: {
+      ...
+      <span class="hljs-string">"test"</span>: <span class="hljs-string">"jest --no-cache"</span>,
+      <span class="hljs-string">"test.watch"</span>: <span class="hljs-string">"jest --watch --no-cache"</span>
+  },
+</code></pre>
+<p>配置 Jest 来查找测试文件并且用 Stencil 预处理器脚本来编译源文件：</p>
+<pre><code class="lang-json">  <span class="hljs-string">"jest"</span>: {
+      <span class="hljs-string">"transform"</span>: {
+        <span class="hljs-string">"^.+\\.(ts|tsx)$"</span>: <span class="hljs-string">"&lt;rootDir&gt;/node_modules/@stencil/core/testing/jest.preprocessor.js"</span>
+      },
+      <span class="hljs-string">"testRegex"</span>: <span class="hljs-string">"(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$"</span>,
+      <span class="hljs-string">"moduleFileExtensions"</span>: [
+        <span class="hljs-string">"ts"</span>,
+        <span class="hljs-string">"tsx"</span>,
+        <span class="hljs-string">"js"</span>,
+        <span class="hljs-string">"json"</span>,
+        <span class="hljs-string">"jsx"</span>
+      ]
+  }
+</code></pre>
+<h2 id="-">组件渲染测试</h2>
+<p>Stencil 测试框架的API包含两个用来渲染测试组件的函数：</p>
+<ul>
+<li><p><code>render({ components: [], html: string })</code> - <code>render()</code> 函数接收一个组件的列表和一个 HTML 片段，
+并返回一个包含渲染完成的 HTML 元素的 promise 实例。</p>
+</li>
+<li><p><code>flush(element)</code> - <code>flush()</code> 函数用来在一个元素的属性更改后，刷新这个元素的渲染过程。
+这个函数在刷新完成以后返回一个当 flush 完成以后会被 resolve 的 promise 实例。</p>
+</li>
+</ul>
+<p>这些函数都是异步执行的。</p>
+<p>渲染时，一个常用的测试模式是在 <code>beforeEach()</code> 中<code>render()</code> 这个组件来进行一套测试。然后，每个测试用例修改元素并使用 <code>flush(element)</code> 刷新节点。</p>
+<h3 id="-">渲染一个组件</h3>
+<p>用 <code>render()</code> 函数来初始化渲染一个组件。</p>
+<p>这个函数接受一个包含两个参数的配置对象作为参数：</p>
+<ul>
+<li><p><code>components</code> ： 一个渲染器需要了解的组件列表。通常来说，这个列表只需要包含被测试的组件。如果你需要为你的测试渲染子组件也可以包含他们，
+不过不需要单独添加。</p>
+</li>
+<li><p><code>html</code> ： 一个用来渲染组件的 HTML 片段。通常这个片段类似于 <code>&lt;my-component&gt;&lt;/my-component&gt;</code>。</p>
+</li>
+</ul>
+<p>这个函数返回一个包含渲染完成的 HTML 元素的 promise 实例。</p>
+<pre><code class="lang-ts">beforeEach(<span class="hljs-name">async</span> () =&gt; {
+  element = await render({
+    components: [MyName],
+    html: '&lt;my-name&gt;&lt;/my-name&gt;'
+  })<span class="hljs-comment">;</span>
+})<span class="hljs-comment">;</span>
+</code></pre>
+<h3 id="-">刷新一个组件</h3>
+<p>如果需要，使用 <code>flush()</code> 函数来重新渲染一个节点。这通常用于更改组件的属性值之后。</p>
+<pre><code class="lang-ts">it('should work with both the first and the last name', async () =&gt; {
+  element.first = 'Peter'
+  element.last = 'Parker'<span class="hljs-comment">;</span>
+  await flush(<span class="hljs-name">element</span>)<span class="hljs-comment">;</span>
+  expect(<span class="hljs-name">element</span>.textContent).toEqual('Hello, my name is Peter Parker')<span class="hljs-comment">;</span>
+})<span class="hljs-comment">;</span>
+</code></pre>
+<h3 id="-">检测元素</h3>
+<p>由于所渲染的元素是一个 HTML 元素，你能用 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">HTMLElement interface</a> 中的方法和属性来测试元素中的内容。</p>
+<p>比如说，我们现在不再打印姓和名了，我们的组件必须把名字根据空格分隔开形成一个列表，并打印出来。我们就可以这么写一个渲染测试，如下：</p>
+<pre><code class="lang-ts">    it('should least each part of the name breaking on spaces', async () =&gt; {
+      element.first = 'Pasta Primavera'<span class="hljs-comment">;</span>
+      element.last = 'O Shea Buttersworth'<span class="hljs-comment">;</span>
+      await flush(<span class="hljs-name">element</span>)<span class="hljs-comment">;</span>
+      const list = element.querySelector('ul')<span class="hljs-comment">;</span>
+      expect(<span class="hljs-name">list</span>.children.length).toEqual(<span class="hljs-number">5</span>)<span class="hljs-comment">;</span>
+      expect(<span class="hljs-name">list</span>.children[<span class="hljs-number">0</span>].textContent).toEqual('Pasta')<span class="hljs-comment">;</span>
+      expect(<span class="hljs-name">list</span>.children[<span class="hljs-number">1</span>].textContent).toEqual('Primavera')<span class="hljs-comment">;</span>
+      expect(<span class="hljs-name">list</span>.children[<span class="hljs-number">2</span>].textContent).toEqual('O')<span class="hljs-comment">;</span>
+      expect(<span class="hljs-name">list</span>.children[<span class="hljs-number">3</span>].textContent).toEqual('Shea')<span class="hljs-comment">;</span>
+      expect(<span class="hljs-name">list</span>.children[<span class="hljs-number">4</span>].textContent).toEqual('Buttersworth')<span class="hljs-comment">;</span>
+    })<span class="hljs-comment">;</span>
+</code></pre>
+<p>任何你能在 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">HTMLElement</a> 用到的方法和属性都可以在这个测试中使用。</p>
+<h2 id="-">组件方法测试</h2>
+<p>为了测试组件的方法，只需实例化组件并调用其中的方法。</p>
+<pre><code class="lang-ts">it('should return an empty string if there is no first or last name', () =&gt; {
+  const myName = new MyName()<span class="hljs-comment">;</span>
+  expect(<span class="hljs-name">myName</span>.formatted()).toEqual('')<span class="hljs-comment">;</span>
+})<span class="hljs-comment">;</span>
+</code></pre>
+<pre><code class="lang-ts">it('should return a formatted string if there is no first or last name', () =&gt; {
+  const myName = new MyName()<span class="hljs-comment">;</span>
+  myName.first = 'Lucas'<span class="hljs-comment">;</span>
+  myName.last = 'Kalrickson'<span class="hljs-comment">;</span>
+  expect(<span class="hljs-name">myName</span>.formatted()).toEqual('Kalrickson, Lucas')<span class="hljs-comment">;</span>
+})<span class="hljs-comment">;</span>
+</code></pre>
+<p><stencil-route-link url="/stencil-site/docs/handling-arrays" router="#router" custom="true">
+  <button class="backButton">
+    返回
+  </button>
+</stencil-route-link></p>
+<p><stencil-route-link url="/stencil-site/docs/stencil-config" custom="true">
+  <button class="nextButton">
+    继续
+  </button>
+</stencil-route-link></p>

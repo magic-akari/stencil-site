@@ -1,0 +1,181 @@
+<h1 id="-">装饰器</h1>
+<p>Stencil 使得构建富交互的组件更容易。让我们从基础开始吧。</p>
+<h2 id="component-">Component 装饰器</h2>
+<p>每一个 Stencil 组件必须使用来自 <code>@stencil/core</code> 包里的 <code>@Component()</code> 装饰器装饰。在这个简单的例子里，开发者必须为组件提供一个 HTML <code>tag</code> 。大多数情况， <code>styleUrl</code> 也会被使用，当你要使用多个不同的样式文件来满足不同的模式或主题时，可能会使用 <code>styleUrls</code> 。</p>
+<p>使用相对路径的 url 来连接你的样式文件。</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'@stencil/core'</span>;
+
+@Component({
+  tag: <span class="hljs-string">'todo-list'</span>,
+  styleUrl: <span class="hljs-string">'todo-list.scss'</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> {</span>
+  ...
+}
+</code></pre>
+<h2 id="prop-">Prop 装饰器</h2>
+<p>Prop 是自定义的用来暴露元素的公开属性，用于开发者为其提供值。子组件不应该知道或引用父组件，所以属性被用来从父组件向子组件传递数据。组件需要使用 <code>@Prop()</code> 装饰器来清楚地描述它所需要接收的属性。属性可以是 <code>number</code>, <code>string</code>, <code>boolean</code>, 甚至是 <code>Object</code> 或者 <code>Array</code> 。默认情况下，当一个 <code>@Prop()</code> 属性被设置值的时候，组件会高效地重新渲染。</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { Prop } from <span class="hljs-string">'@stencil/core'</span>;
+...
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> {</span>
+  <span class="hljs-meta">@Prop</span>() <span class="hljs-string">color:</span> string;
+  <span class="hljs-meta">@Prop</span>() <span class="hljs-string">favoriteNumber:</span> number;
+  <span class="hljs-meta">@Prop</span>() <span class="hljs-string">isSelected:</span> <span class="hljs-keyword">boolean</span>;
+  <span class="hljs-meta">@Prop</span>() <span class="hljs-string">myHttpService:</span> MyHttpService;
+}
+</code></pre>
+<p>在 <code>TodoList</code> 类中，可以使用 <code>this</code> 操作符来访问属性。</p>
+<pre><code class="lang-typescript"><span class="hljs-function"><span class="hljs-title">logColor</span><span class="hljs-params">()</span></span> {
+  console.log(this.<span class="hljs-attribute">color</span>)
+}
+</code></pre>
+<p>属性由外部传入元素：</p>
+<pre><code class="lang-typescript">&lt;todo-list <span class="hljs-attribute">color</span>=<span class="hljs-string">"blue"</span> <span class="hljs-attribute">favoriteNumber</span>=<span class="hljs-string">"24"</span> <span class="hljs-attribute">isSelected</span>=<span class="hljs-string">"true"</span>&gt;&lt;/todo-list&gt;
+</code></pre>
+<p>也可以通过 JS 来访问元素的属性。</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> todoListElement = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'todo-list'</span>);
+<span class="hljs-built_in">console</span>.log(todoListElement.myHttpService); <span class="hljs-comment">// MyHttpService</span>
+<span class="hljs-built_in">console</span>.log(todoListElement.color); <span class="hljs-comment">// blue</span>
+</code></pre>
+<p>需要注意的是，<code>@Prop</code> 在元素内部是不可改变的。一旦被用户设定了值，在内部是无法更新它的。</p>
+<h2 id="propwillchange-propdidchange-">PropWillChange 和 PropDidChange 装饰器</h2>
+<p>当用户更新了属性后，<code>PropDidChange</code> 和 <code>PropWillChange</code> 将会被触发。</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { Prop, PropDidChange, PropWillChange } from <span class="hljs-string">'@stencil/core'</span>;
+
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LoadingIndicator</span> {</span>
+  <span class="hljs-meta">@Prop</span>() <span class="hljs-string">activated:</span> <span class="hljs-keyword">boolean</span>;
+
+  <span class="hljs-meta">@PropWillChange</span>(<span class="hljs-string">'activated'</span>)
+  willChangeHandler(<span class="hljs-string">newValue:</span> <span class="hljs-keyword">boolean</span>) {
+    console.log(<span class="hljs-string">'The new value of activated is: '</span>, newValue);
+  }
+
+  <span class="hljs-meta">@PropDidChange</span>(<span class="hljs-string">'activated'</span>)
+  didChangeHandler(<span class="hljs-string">newValue:</span> <span class="hljs-keyword">boolean</span>) {
+    <span class="hljs-comment">// 当`activated` 变化时，做某些事情</span>
+  }
+}
+</code></pre>
+<h1 id="-">管理组件状态</h1>
+<p><code>@State()</code> 装饰器可以用来管理组件内部数据。这意味着用户无法从外部修改这些属性，但是组件可以自己管理。任何被 <code>@State()</code> 装饰的属性更改否会使得组件的渲染函数 (render) 再一次被调用。</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { State } from <span class="hljs-string">'@stencil/core'</span>;
+
+...
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> </span>{
+  <span class="hljs-meta">@State()</span> completedTodos: Todo[];
+
+  completeTodo(todo: Todo) {
+    <span class="hljs-comment">// 这会使得渲染函数 (render) 再次被调用。</span>
+    <span class="hljs-keyword">this</span>.completedTodos = [...<span class="hljs-keyword">this</span>.completedTodos, todo]; 
+  }
+
+  render() {
+    <span class="hljs-comment">//</span>
+  }
+}
+</code></pre>
+<h2 id="method-">Method 装饰器</h2>
+<p><code>@Method()</code> 装饰器用来把方法向外部暴露成公开API。被 <code>@Method()</code> 装饰器装饰的函数可以直接从元素上调用。</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { Method } <span class="hljs-keyword">from</span> <span class="hljs-string">'@stencil/core'</span>;
+
+...
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> TodoList {
+
+  @Method()
+  showPrompt() {
+    <span class="hljs-comment">// 显示一个弹窗提示 (prompt)</span>
+  }
+}
+</code></pre>
+<p>像这样调用方法：</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> todoListElement = <span class="hljs-built_in">document</span>.<span class="hljs-built_in">querySelector</span>(<span class="hljs-string">'todo-list'</span>);
+todoListElement.showPrompt();
+</code></pre>
+<h2 id="element-">Element 装饰器</h2>
+<p><code>@Element()</code> 装饰器用来在类的实例内部访问元素。它将返回一个 <code>HTMLElement</code> 的实例，所以在这里可以使用标准的 DOM 的方法/事件。</p>
+<pre><code><span class="hljs-keyword">import</span> { Element } <span class="hljs-keyword">from</span> <span class="hljs-string">'@stencil/core'</span>;
+
+...
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> {</span>
+
+  @Element() todoListEl: HTMLElement;
+
+  addClass(){
+    <span class="hljs-keyword">this</span>.todoListEl.classList.add(<span class="hljs-string">'active'</span>);
+  }
+}
+</code></pre><h2 id="change-">Change 装饰器</h2>
+<p>Stencil 实际上并没有 Change 装饰器，为了触发高效的重新渲染，可以使用 <code>@State</code> 装饰器来更新当前状态和触发重新渲染。</p>
+<p>下边的例子<strong>不会</strong>触发重新渲染：</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { State } <span class="hljs-keyword">from</span> <span class="hljs-string">'@stencil/core'</span>;
+
+...
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> {</span>
+  @State() completedTodos: Todo[];
+
+  completeTodo(todo: Todo) {
+    <span class="hljs-keyword">this</span>.completedTodos.push(todo);
+  }
+}
+</code></pre>
+<p>在上边的例子中，我们改变了 <code>completedTodos</code> 数组的内容。
+重新渲染机制并没有执行，是因为 Stencil 并没有深度观察项目的改变。</p>
+<p>为了触发重新渲染，值需要被设置为新的数组：</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { State } from <span class="hljs-string">'@stencil/core'</span>;
+
+...
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoList</span> </span>{
+  <span class="hljs-meta">@State()</span> completedTodos: Todo[];
+
+  completeTodo(todo: Todo) {
+    <span class="hljs-keyword">this</span>.completedTodos = [...<span class="hljs-keyword">this</span>.completedTodos, todo];
+  }
+}
+</code></pre>
+<p>在上边的例子中，我们使用已存在的 <code>completedTodos</code> 和新的 <code>todo</code> 来生成一个新的数组赋值给 <code>this.completedTodos</code>。</p>
+<p>这将调用 <code>completedTodos</code> 的 setter，以此来触发重新渲染。</p>
+<h2 id="-">嵌套的组件</h2>
+<p>组件可以非常容易地组合在一起，只需要把 HTML 标签添加到 JSX 代码中即可。因为组件就是 HTML 标签，因此在一个 Stencil 组件中使用另一个 Stencil 组件到时候并不需要导入什么东西。</p>
+<p>这里有一个在一个组件中使用另一个组件的例子：</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { Component, Prop } from <span class="hljs-string">'@stencil/core'</span>;
+
+<span class="hljs-meta">@Component({
+  tag: <span class="hljs-meta-string">'my-embedded-component'</span>
+})</span>
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyEmbeddedComponent</span> </span>{
+  <span class="hljs-meta">@Prop()</span> color: string = <span class="hljs-string">'blue'</span>;
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+    &lt;div&gt;My favorite color <span class="hljs-keyword">is</span> {<span class="hljs-keyword">this</span>.color}&lt;/div&gt;
+    );
+  }
+}
+</code></pre>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'@stencil/core'</span>;
+
+@Component({
+  <span class="hljs-attr">tag</span>: <span class="hljs-string">'my-parent-component'</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyParentComponent</span> </span>{
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">my-embedded-component</span> <span class="hljs-attr">color</span>=<span class="hljs-string">"red"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">my-embedded-component</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    );
+  }
+}</span>
+</code></pre>
+<p><code>my-parent-component</code> 组件在 <code>render()</code> 函数中引用了 <code>my-embedded-component</code>。</p>
+<p><stencil-route-link url="/stencil-site/docs/templating" router="#router" custom="true">
+  <button class="backButton">
+    返回
+  </button>
+</stencil-route-link></p>
+<p><stencil-route-link url="/stencil-site/docs/events" custom="true">
+  <button class="nextButton">
+    继续
+  </button>
+</stencil-route-link></p>

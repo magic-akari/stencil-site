@@ -1,0 +1,47 @@
+<h1 id="shadow-dom">Shadow DOM</h1>
+<h3 id="-shadow-dom">什么是 Shadow DOM</h3>
+<p><a href="https://developers.google.com/web/fundamentals/web-components/shadowdom">Shadow DOM</a> 是一个浏览器内建的 API ，允许包囊 DOM 和 样式。Shadow DOM 将我们的组件和外界隔绝开，这意味着我们不需要考虑诸如 css 正确的作用域，或者担心我们的 DOM 被外界其他的组件打扰。</p>
+<h3 id="-">浏览器支持情况</h3>
+<p>Shadow DOM 被下列浏览器原生支持：</p>
+<ul>
+<li>Chrome</li>
+<li>Safari</li>
+<li>Opera</li>
+<li>大部分基于 Chromium 的浏览器</li>
+</ul>
+<p>对于不支持 Shadow DOM 的浏览器，我们将回退到私有化(scoped) css。这同样让你可以像 Shadow DOM 一样包囊住样式文件，而不是选择加载庞大的补丁 (polyfill)。</p>
+<blockquote>
+<p>对私有化(scoped) css 有疑惑？别担心，我们稍后将会详细解释。</p>
+</blockquote>
+<h3 id="stencil-shadow-dom">Stencil 中的 Shadow DOM</h3>
+<p>使用 Stencil 构建 web 组件时候，Shadow DOM 并不是默认开启的。要在 web 组件中开启 Shadow DOM，可以在组件装饰器中使用 <code>shadow</code> 参数。  下面是一个例子：</p>
+<pre><code>@Component({
+  tag: <span class="hljs-string">'shadow-component'</span>,
+  styleUrl: <span class="hljs-string">'shadow-component.scss'</span>,
+  shadow: <span class="hljs-literal">true</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ShadowComponent</span> {</span>
+
+}
+</code></pre><h3 id="-shadow-dom-">使用 Shadow DOM 时需要注意的事项</h3>
+<ul>
+<li><p>选择器 (QuerySelector)：使用 Shadow DOM 的时候，当你想在 web 组件内查询元素时，你必须使用 <code>this.el.shadowRoot.querySelector()</code>。这是因为在所有在 Shadow DOM 的 web 组件中，所有的 DOM 都创建在 shadowRoot 里。</p>
+</li>
+<li><p>全局样式：要在 Shadow DOM 的组件外部定义一个组件的样式时，你必须使用 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables">CSS Custom Properties</a> 或者这个提案 <a href="https://tabatkins.github.io/specs/css-shadow-parts/">CSS Shadow Parts</a>。</p>
+</li>
+<li><p>一般情况你只需要把你的样式用标签名包起来，就像这样：</p>
+</li>
+</ul>
+<pre><code>my-<span class="hljs-class">element </span>{
+  <span class="hljs-class">div </span>{
+<span class="hljs-symbol">    background:</span> blue;
+  }
+}
+</code></pre><p>当使用 Shadow DOM 的时候，这个元素的 css 选择器是 <code>:host</code> 选择器。所以, 在你的组件里开启 Shadow DOM 的时候，上边的代码会变成：</p>
+<pre><code><span class="hljs-symbol">:host</span> {
+  div {
+    background: blue;
+  }
+}
+</code></pre><h3 id="-scoped-css">私有化 (Scoped) CSS</h3>
+<p>对于不支持 Shadow DOM 的浏览器，使用 Stencil 构建的 web 组件将会回退到使用私有化 (scoped) CSS ，而不是加载庞大的 Shadow DOM 补丁 (polyfill)。私有化 (Scoped) CSS 自动在运行时通过给你的每一个样式添加 data 属性来将其私有化到一个组件。</p>

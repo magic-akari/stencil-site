@@ -1,19 +1,25 @@
-<h1 id="getting-started">Getting Started</h1>
-<h3 id="requirements">Requirements</h3>
-<p>Stencil requires Node 8 and NPM 5 or greater.</p>
-<h3 id="starting-a-new-project">Starting a new project</h3>
-<p>To start a new project, simply clone the app-base from Github:</p>
-<pre><code class="lang-bash">git clone git@github.com:ionic-team/stencil-starter my-<span class="hljs-keyword">app</span>
+<h1 id="-">现在开始</h1>
+<h2 id="-">开始一个新项目</h2>
+<p>要想开始一个新的 Stencil 项目，只需从 GitHub 克隆 stencil-app-starter 这个项目：</p>
+<pre><code class="lang-bash">git clone https:<span class="hljs-comment">//github.com/ionic-team/stencil-app-starter my-app</span>
 <span class="hljs-keyword">cd</span> my-<span class="hljs-keyword">app</span>
 git remote <span class="hljs-keyword">rm</span> origin
 npm install
 </code></pre>
-<p>Then, to start a live-reload server, run:</p>
+<p>然后，要打开一个具有实时刷新 (live-reload) 功能的服务，只需要运行：</p>
 <pre><code class="lang-bash"><span class="hljs-built_in">npm</span> start
 </code></pre>
-<h3 id="developing">Developing</h3>
-<p>Changes made while the live-reload server will automatically be reflected. Let&#39;s make a small edit to our component. Open <code>src/components/my-name/my-name.tsx</code> in your editor</p>
-<p>We can ignore most of the content here, but we&#39;ll look at our <code>render</code> method. Inside the return statement, let&#39;s modify what we have.</p>
+<h2 id="-">测试</h2>
+<p>为了测试组件，Stencil Application Starter 使用了 Jest 和一个小的用于测试的 API。有两种方法可以运行单元测试。通过命令运行测试一次，或者在每次源码改变导致的实时刷新 (live-reload) 时运行。</p>
+<p>通过命令运行测试一次：</p>
+<pre><code class="lang-bash">npm <span class="hljs-built_in">test</span>
+</code></pre>
+<p>在实时刷新 (live-reload) 时运行测试：</p>
+<pre><code class="lang-bash">npm <span class="hljs-keyword">run</span><span class="bash"> test.watch</span>
+</code></pre>
+<h2 id="-">编写代码</h2>
+<p>源码的改变会被实时刷新服务监控到并反馈到页面上。现在让我们对组件做一个小的更改。在你的编辑器中打开 <code>src/components/my-name/my-name.tsx</code>。</p>
+<p>我们可以忽略大部分内容，直接看 <code>render</code> 方法。让我们更改一下 return 语句中的内容。</p>
 <pre><code class="lang-jsx">render() {
     <span class="hljs-keyword">return</span> (
       &lt;p&gt;
@@ -22,4 +28,18 @@ npm install
     );
   }
 </code></pre>
-<p>When we save, we&#39;ll have our component updated with the new changes. To learn more about what&#39;s going on in this component, check out               <stencil-route-link url="/components" router="#router">component docs</stencil-route-link></p>
+<p>保存文档的时候，组件就会随着我们的更改而更新。如欲了解更多关于组件里发生了什么，请查看 <stencil-route-link url="/stencil-site/docs/my-first-component">component docs</stencil-route-link></p>
+<h2 id="-">生产环境部署</h2>
+<p>要部署一个生产环境的版本，运行下面的命令</p>
+<pre><code>npm <span class="hljs-keyword">run</span><span class="bash"> build</span>
+</code></pre><p>这将会生成一个你的 stencil 组件的最小化版本。</p>
+<p><stencil-route-link url="/stencil-site/docs/intro" router="#router" custom="true">
+  <button class="backButton">
+    返回
+  </button>
+</stencil-route-link></p>
+<p><stencil-route-link url="/stencil-site/docs/my-first-component" custom="true">
+  <button class="nextButton">
+    继续
+  </button>
+</stencil-route-link></p>

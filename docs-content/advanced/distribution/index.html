@@ -1,0 +1,56 @@
+<h1 id="-stencil-web-">使用 Stencil 分发 web 组件</h1>
+<p>Stencil 让跨框架构建和分享 web 组件变得简单。</p>
+<h3 id="-">开始</h3>
+<p>使用 Stencil 最简单的构建和分发 web 组件的方法是使用我们的 <a href="https://github.com/ionic-team/stencil-component-starter">stencil-component-starter</a>. 这个开箱即用工具包含了所有配置，关于 package.json 的修改，在 <a href="https://github.com/ionic-team/stencil-component-starter/blob/master/readme.md">readme</a> 中已经讨论过了。</p>
+<h3 id="-">分发配置</h3>
+<p>很容易为分发而配置 Stencil。只需要在 <code>stencil.config.js</code> 文件中配置如下选项:</p>
+<pre><code><span class="hljs-string">exports.config</span> <span class="hljs-string">=</span> <span class="hljs-string">{</span>
+<span class="hljs-attr">  namespace:</span> <span class="hljs-string">'myname'</span><span class="hljs-string">,</span>
+<span class="hljs-attr">  generateDistribution:</span> <span class="hljs-literal">true</span><span class="hljs-string">,</span>
+<span class="hljs-attr">  generateWWW:</span> <span class="hljs-literal">false</span><span class="hljs-string">,</span>
+  <span class="hljs-string">...</span>
+<span class="hljs-string">};</span>
+</code></pre><p><stencil-route-link url="/stencil-site/docs/stencil-config" router="#router" custom="true">
+  点击这里学习更多关于配置的选项
+</stencil-route-link></p>
+<p>你也需要在你的 <code>package.json</code> 中添加如下选项： </p>
+<pre><code>{
+  <span class="hljs-string">"main"</span>: <span class="hljs-string">"dist/collection/index.js"</span>,
+  <span class="hljs-string">"types"</span>: <span class="hljs-string">"dist/collection/index.d.ts"</span>,
+  <span class="hljs-string">"collection"</span>: <span class="hljs-string">"dist/collection/collection-manifest.json"</span>,
+  <span class="hljs-string">"files"</span>: [
+    <span class="hljs-string">"dist/"</span>
+  ],
+  <span class="hljs-string">"browser"</span>: <span class="hljs-string">"dist/myname.js"</span>,
+  ...
+}
+</code></pre><h2 id="-">在框架中使用你的组件</h2>
+<p>有3种推荐的策略来使用 Stencil 构建的组件。</p>
+<p>3种策略都需要共同的第一步，<a href="https://docs.npmjs.com/getting-started/publishing-npm-packages">发布到 NPM</a>。</p>
+<h3 id="script-">Script 标签</h3>
+<ul>
+<li>在你的 index.html 中放置一个和类似于 <code>&lt;script src=&#39;https://unpkg.com/my-name@0.0.1/dist/myname.js&#39;&gt;&lt;/script&gt;</code> 的标签</li>
+<li>然后你就可以在任意地方使用你的 template，JSX，html 等等。</li>
+</ul>
+<h3 id="node-">Node 模块</h3>
+<ul>
+<li>运行 <code>npm install my-name --save</code></li>
+<li>在你的 index.html 中放置一个和类似于 <code>&lt;script src=&#39;node_modules/my-name/dist/myname.js&#39;&gt;&lt;/script&gt;</code> 的标签</li>
+<li>然后你就可以在任意地方使用你的 template，JSX，html 等等。</li>
+</ul>
+<h3 id="-stencil-app-starter-app-">在 stencil-app-starter 的 app 中</h3>
+<ul>
+<li>运行 <code>npm install my-name --save</code></li>
+<li>添加 <code>{ name: &#39;my-name&#39; }</code> 到你的 <a href="https://github.com/ionic-team/stencil-app-starter/blob/master/stencil.config.js#L5">collections</a> 中</li>
+<li>然后你就可以在任意地方使用你的 template，JSX，html 等等。</li>
+</ul>
+<p><stencil-route-link url="/stencil-site/docs/service-workers" router="#router" custom="true">
+  <button class="backButton">
+    返回
+  </button>
+</stencil-route-link></p>
+<p><stencil-route-link url="/stencil-site/docs/angular-integration" custom="true">
+  <button class="nextButton">
+    继续
+  </button>
+</stencil-route-link></p>

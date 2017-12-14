@@ -1,0 +1,193 @@
+<h1 id="-jsx">使用 JSX</h1>
+<p>Stencil 组件使用 JSX 来渲染，这是一个流行的，声明式的模版语法。每一个组件都有一个 <code>render</code> 函数用来返回 JSX 内容。</p>
+<h3 id="-">基础</h3>
+<p>render 函数返回的东西和 HTML 很相似。</p>
+<pre><code class="lang-typescript">render() {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Hello World<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  )
+}
+</code></pre>
+<p>这里我们返回一个 <code>div</code> 的 JSX 表达式，内部内容是 &quot;Hello World&quot;。</p>
+<h3 id="-">数据绑定</h3>
+<p>一个普遍需求是基于数据和属性来渲染组件。
+就像很多流行的框架一样，我们可以使用 <code>{}</code>。</p>
+<pre><code class="lang-typescript">render() {
+<span class="hljs-built_in">  return</span> (
+    &lt;<span class="hljs-keyword">div</span>&gt;Hello {this.<span class="hljs-built_in">name</span>}&lt;/<span class="hljs-keyword">div</span>&gt;
+  )
+}
+</code></pre>
+<blockquote>
+<p>一个简单的技巧是，把 JSX 数据绑定操作符看成 JavaScript 字面量模版语法, 其区别仅仅是前边没有了 <code>$</code>。</p>
+</blockquote>
+<pre><code class="lang-js"><span class="hljs-comment">//ES6</span>
+<span class="hljs-string">`Hello <span class="hljs-subst">${<span class="hljs-keyword">this</span>.name}</span>`</span>
+
+<span class="hljs-comment">//JSX</span>
+Hello {<span class="hljs-keyword">this</span>.name}
+</code></pre>
+<h3 id="-">条件渲染</h3>
+<p>如果我们想根据不同的情况，渲染不同的内容，我们可以简单地使用 JavaScript 的 if/else 语句：
+这里, 如果 <code>name</code> 未定义, 我们就渲染一个不同的元素。</p>
+<pre><code class="lang-jsx">render() {
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.name) {
+    <span class="hljs-keyword">return</span> ( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Hello {this.name}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span> )
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> ( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Hello, World<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span> )
+  }
+}
+</code></pre>
+<p>一个更加复杂的关于使用 JSX 短路表达式的例子：</p>
+<pre><code class="lang-jsx">render() {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    {this.name
+      ? <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello {this.name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      : <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello World<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    }
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<p>在这个例子里，我们需要根据条件渲染子组件。</p>
+<h3 id="slots">Slots</h3>
+<p>有些时候你想传递更多的 JSX/HTML 作为子元素。例如：</p>
+<pre><code class="lang-jsx">render(){
+  <span class="hljs-keyword">return</span>(
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">my-component</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Child Element<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">my-component</span>&gt;</span>
+  )
+}</span>
+</code></pre>
+<p>未来达到这个目的，你可以在你的 <code>my-component</code> 中使用 <code>slot</code> 标签。</p>
+<pre><code class="lang-jsx"><span class="hljs-comment">// my-component.tsx</span>
+
+<span class="hljs-function"><span class="hljs-title">render</span><span class="hljs-params">()</span></span>{
+  return &lt;slot /&gt;
+}
+</code></pre>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot">Slot</a> 在 Web 组件中是一个特殊的标签，允许你在自定义元素中放置自由元素。
+Slots 也可以含有 <code>name</code>，允许你在特定的地方渲染内容。</p>
+<pre><code class="lang-jsx"><span class="hljs-comment">// my-component.tsx</span>
+
+<span class="hljs-function"><span class="hljs-title">render</span><span class="hljs-params">()</span></span>{
+  return[
+    &lt;slot name=<span class="hljs-string">"item-start"</span>/stencil-site/&gt;,
+    &lt;h1&gt;Here is my main <span class="hljs-attribute">content</span>&lt;/h1&gt;,
+    &lt;slot name=<span class="hljs-string">"item-end"</span>/stencil-site/&gt;
+  ]
+}
+</code></pre>
+<pre><code class="lang-jsx">render(){
+  <span class="hljs-keyword">return</span>(
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">my-component</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"item-start"</span>&gt;</span>I'll be placed before the h1<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"item-end"</span>&gt;</span>I'll be placed after the h1<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">my-component</span>&gt;</span>
+  )
+}</span>
+</code></pre>
+<h3 id="-">循环</h3>
+<p>循环/迭代同样适用，就像 JavaScript 中一样。</p>
+<p>在下边的例子中，我们假设这个组件有一个本地的属性，名为 <code>todos</code> 数组，其包含了一组 todo 对象。我们在数组上使用 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map">map</a> 函数来遍历每一个元素，并将其转化为一些别的东西 - 在这里我们转换为了 JSX。</p>
+<pre><code class="lang-jsx">render() {
+  <span class="hljs-keyword">return</span> (
+    &lt;<span class="hljs-keyword">div</span>&gt;
+      {<span class="hljs-keyword">this</span>.todos.map((todo) =&gt; 
+        &lt;<span class="hljs-keyword">div</span>&gt;
+          &lt;<span class="hljs-keyword">div</span>&gt;{todo.taskName}&lt;/<span class="hljs-keyword">div</span>&gt;
+          &lt;<span class="hljs-keyword">div</span>&gt;{todo.isCompleted}&lt;/<span class="hljs-keyword">div</span>&gt;
+        &lt;/<span class="hljs-keyword">div</span>&gt;
+      )}
+    &lt;/<span class="hljs-keyword">div</span>&gt;
+  )
+}
+</code></pre>
+<h3 id="-">处理用户输入</h3>
+<p>Stencil 使用原生的 <a href="https://developer.mozilla.org/en-US/docs/Web/Events">DOM 事件</a>。</p>
+<p>这里有一个关于如何处理按钮点击的例子。注意<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">箭头函数</a>的用法。</p>
+<pre><code class="lang-jsx">...
+export <span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> {
+  handleClick(<span class="hljs-keyword">event</span>: UIEvent) {
+    alert(<span class="hljs-string">'Received the button click!'</span>);
+  }
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;button onClick={ (<span class="hljs-keyword">event</span>: UIEvent) =&gt; <span class="hljs-keyword">this</span>.handleClick(<span class="hljs-keyword">event</span>)}&gt;Click Me!&lt;/button&gt;
+    );
+  }
+}
+</code></pre>
+<p>另一种可选的语法如下：</p>
+<pre><code class="lang-jsx">  handleClick(event: UIEvent) {
+    alert(<span class="hljs-string">'Received the button click!'</span>);
+  }
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;button onClick={<span class="hljs-keyword">this</span>.handleClick.bind(<span class="hljs-keyword">this</span>)}&gt;Click Me!&lt;/button&gt;
+    );
+  }
+</code></pre>
+<p>两种选项都是有效的。</p>
+<p>这里有另一个关于监听 input 组件的 <code>change</code> 事件的例子。注意<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">箭头函数</a>的用法。</p>
+<pre><code class="lang-jsx">...
+export <span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> {
+  inputChanged(<span class="hljs-keyword">event</span>) {
+    console.log(<span class="hljs-string">'input changed: '</span>, <span class="hljs-keyword">event</span>.target.<span class="hljs-keyword">value</span>);
+  }
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;input onChange={(<span class="hljs-keyword">event</span>: UIEvent) =&gt; <span class="hljs-keyword">this</span>.inputChanged(<span class="hljs-keyword">event</span>)}&gt;
+    );
+  }
+}
+</code></pre>
+<h3 id="-">复杂的模版内容</h3>
+<p>到目前为止我们看了很多如何返回只有一个根元素的例子。我们也可以在返回的根元素里嵌套其他的元素，就像正常的 HTMl 那样：</p>
+<pre><code class="lang-jsx">render() {
+  <span class="hljs-keyword">return</span> (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 3<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<p>当组件有多个“顶级”元素时，<code>render</code> 函数可以返回一个数组。
+注意 <code>&lt;div&gt;</code> 之间的逗号。</p>
+<pre><code class="lang-jsx">render() {
+  return ([
+  // 第一个顶级元素
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Item 3<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>,
+
+  // 第二个顶级元素, 注意上方的逗号(,)
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"another-container"</span>&gt;</span>
+    ... more html content ...
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  ]);
+}
+</code></pre>
+<p><stencil-route-link url="/stencil-site/docs/my-first-component" router="#router" custom="true">
+  <button class="backButton">
+    返回
+  </button>
+</stencil-route-link></p>
+<p><stencil-route-link url="/stencil-site/docs/decorators" custom="true">
+  <button class="nextButton">
+    继续
+  </button>
+</stencil-route-link></p>
