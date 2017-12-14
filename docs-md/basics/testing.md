@@ -1,18 +1,14 @@
-# Testing
+# 测试
 
-Stencil makes it easy to unit test your component using Jest and the Stencil unit testing framework.
-The testing framework requires very little configuration and has a minimal API consisting of two functions:
-`render()` and `flush()`. The Stencil unit testing framework can be used to test the rendering of the component
-as well as the methods defined on the component class.
+Stencil 让你的组件通过 Jset 和 Stencil 单元测试框架来进行单元测试变得更加简单。
+这个测试框架只需要非常少的配置并提供一个由两个函数组成的极小的API：
+`render()` 和 `flush()`。Stencil 的单元测试框架能测试组件的渲染过程和定义在组件类中的方法。
 
-## Testing Config
+## 测试配置
 
-Allowing a Stencil component project to run unit tests requires a small amount of configuration in the `package.json`
-file. All of this configuration is included with the Stencil App Starter and the Stencil Component Starter so if you
-use one of those templates to start your project, you should not have to add anything. This information is presented
-here primarily for informational purposes.
+要想让一个 Stencil 组件工程能够运行单元测试，需要在 `package.json` 文件中进行一些少量的配置。所有的配置都包含在了 Stencil App Starter 和 Stencil Component Starter 中，如果你要用这些模板来开始你的项目，你就不需要再添加任何东西。这里介绍的信息仅供查阅。
 
-Jest is installed as a development dependency:
+Jest 需要被安装为开发依赖 (devDependencies)：
 
 ```json
   "devDependencies": {
@@ -22,7 +18,7 @@ Jest is installed as a development dependency:
   },
 ```
 
-NPM scripts are set up in order to run the tests:
+设置 NPM 脚本来运行这些测试：
 
 ```json
   "scripts": {
@@ -32,7 +28,7 @@ NPM scripts are set up in order to run the tests:
   },
 ```
 
-Jest is configured to find test files and to use the Stencil preprocessor script to compile the sources:
+配置 Jest 来查找测试文件并且用 Stencil 预处理器脚本来编译源文件：
 
 ```json
   "jest": {
@@ -50,34 +46,32 @@ Jest is configured to find test files and to use the Stencil preprocessor script
   }
 ```
 
-## Component Rendering Tests
+## 组件渲染测试
 
-The Stencil testing framework API contains two functions that are used to render components for testing:
+Stencil 测试框架的API包含两个用来渲染测试组件的函数：
 
-- `render({ components: [], html: string })` - The `render()` function takes a list of components and an HTML snippet
-and returns the promise of the rendered HTML element.
+- `render({ components: [], html: string })` - `render()` 函数接收一个组件的列表和一个 HTML 片段，
+并返回一个包含渲染完成的 HTML 元素的 promise 实例。
 
-- `flush(element)` - The `flush()` function is used to refresh the rendering of an element after property changes are made.
-This function returns a promise that is resolved when the flush is complete.
+- `flush(element)` - `flush()` 函数用来在一个元素的属性更改后，刷新这个元素的渲染过程。
+这个函数在刷新完成以后返回一个当 flush 完成以后会被 resolve 的 promise 实例。
 
-Both of these function operate asynchronously.
+这些函数都是异步执行的。
 
-A common testing pattern when rendering is to `render()` the component in the `beforeEach()` for a suite of tests. Each
-test case then modifies the element and uses `flush(element)` to refresh the node.
+渲染时，一个常用的测试模式是在 `beforeEach()` 中`render()` 这个组件来进行一套测试。然后，每个测试用例修改元素并使用 `flush(element)` 刷新节点。
 
-### Rendering a Component
+### 渲染一个组件
 
-Use the `render()` function to initially render a component.
+用 `render()` 函数来初始化渲染一个组件。
 
-This function takes a configuration object with two parameters:
+这个函数接受一个包含两个参数的配置对象作为参数：
 
-- `components`: a list of components the renderer needs to know about. Generally, this only needs to contain the
-component being tested. Child components can also be included if you need to have them rendered for your test
-but this is not a requirement otherwise.
+- `components` ： 一个渲染器需要了解的组件列表。通常来说，这个列表只需要包含被测试的组件。如果你需要为你的测试渲染子组件也可以包含他们，
+不过不需要单独添加。
 
-- `html`: an HTML snippet used to render the component. Usually this just looks like `<my-component></my-component>`.
+- `html` ： 一个用来渲染组件的 HTML 片段。通常这个片段类似于 `<my-component></my-component>`。
 
-This function returns a promise that is resolved with the rendered HTML element.
+这个函数返回一个包含渲染完成的 HTML 元素的 promise 实例。
 
 ```ts
 beforeEach(async () => {
@@ -88,10 +82,9 @@ beforeEach(async () => {
 });
 ```
 
-### Refreshing a Component
+### 刷新一个组件
 
-Use the `flush()` function to re-render the node as needed. This is typically done after changing property values
-on the component.
+如果需要，使用 `flush()` 函数来重新渲染一个节点。这通常用于更改组件的属性值之后。
 
 ```ts
 it('should work with both the first and the last name', async () => {
@@ -102,14 +95,11 @@ it('should work with both the first and the last name', async () => {
 });
 ```
 
-### Examining the Element
+### 检测元素
 
-Since the rendered element is an HTMLElement, you can use methods and properties from the
-[HTMLElement interface](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) in order to examine the
-contents of the element.
+由于所渲染的元素是一个 HTML 元素，你能用 [HTMLElement interface](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) 中的方法和属性来测试元素中的内容。
 
-Let's say that instead of printing the first and last names, our component had to split the names apart on spaces
-and print a list of each part of the name. We could write a rendering test for that as such:
+比如说，我们现在不再打印姓和名了，我们的组件必须把名字根据空格分隔开形成一个列表，并打印出来。我们就可以这么写一个渲染测试，如下：
 
 ```ts
     it('should least each part of the name breaking on spaces', async () => {
@@ -126,11 +116,12 @@ and print a list of each part of the name. We could write a rendering test for t
     });
 ```
 
-Anything that you can use on an [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) you can use in the tests.
+任何你能在 [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) 用到的方法和属性都可以在这个测试中使用。
 
-## Component Method Tests
 
-To test the component's methods, simply instantiate an instance of the component and call the methods.
+## 组件方法测试
+
+为了测试组件的方法，只需实例化组件并调用其中的方法。
 
 ```ts
 it('should return an empty string if there is no first or last name', () => {
@@ -150,12 +141,12 @@ it('should return a formatted string if there is no first or last name', () => {
 
 <stencil-route-link url="/docs/handling-arrays" router="#router" custom="true">
   <button class="backButton">
-    Back
+    返回
   </button>
 </stencil-route-link>
 
 <stencil-route-link url="/docs/stencil-config" custom="true">
   <button class="nextButton">
-    Next
+    继续
   </button>
 </stencil-route-link>
