@@ -2,7 +2,7 @@
 
 使用事件装饰器，可以让组件可以发送数据和事件。
 
-使用`@Event()`装饰器，可以给其他组件发送[自定义 DOM 事件](https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events)。
+使用 `@Event()` 装饰器，可以给其他组件发送[自定义 DOM 事件](https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events)。
 
 ```typescript
 import { Event, EventEmitter } from '@stencil/core';

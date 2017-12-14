@@ -37,7 +37,7 @@ npm run test.watch
 
 源码的改变会被实时刷新服务监控到并反馈到页面上。现在让我们对组件做一个小的更改。在你的编辑器中打开 `src/components/my-name/my-name.tsx`。
 
-我们可以忽略大部分内容，直接看`render`方法。让我们更改一下 return 语句中的内容。
+我们可以忽略大部分内容，直接看 `render` 方法。让我们更改一下 return 语句中的内容。
 
 ```jsx
 render() {

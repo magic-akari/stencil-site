@@ -73,8 +73,8 @@ export class ResourcesPage {
               <lazy-iframe style={{ border: '1px solid #eee' }} src="https://ionic-team.github.io/stencil-present/" title="Present Stencil"></lazy-iframe>
             </div>
             <p>
-            当你下次和别人见面和介绍Stencil时，可以fork的presentation。
-            使用<a href="https://github.com/hakimel/reveal.js">Reveal.js</a>构建。
+            当你下次和别人见面和介绍 Stencil 时，可以 fork 的 presentation。
+            使用 <a href="https://github.com/hakimel/reveal.js">Reveal.js</a> 构建。
             </p>
             <a target="_blank" href="https://ionic-team.github.io/stencil-present/">Stencil Presentation</a>
             <br />

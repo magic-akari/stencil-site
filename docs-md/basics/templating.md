@@ -14,7 +14,7 @@ render() {
 }
 ```
 
-这里我们返回一个 `div` 的JSX 表达式，内部内容是 "Hello World"。
+这里我们返回一个 `div` 的 JSX 表达式，内部内容是 "Hello World"。
 
 
 ### 数据绑定
@@ -99,7 +99,7 @@ render(){
 ```
 
 [Slot](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) 在 Web 组件中是一个特殊的标签，允许你在自定义元素中放置自由元素。
-Slots 也可以欧 `name`，允许你在特定的地方渲染内容。
+Slots 也可以含有 `name`，允许你在特定的地方渲染内容。
 
 ```jsx
 // my-component.tsx
@@ -150,7 +150,7 @@ render() {
 
 Stencil 使用原生的 [DOM 事件](https://developer.mozilla.org/en-US/docs/Web/Events)。
 
-这里有一个关于如何处理按钮点击的例子。注意 [箭头函数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) 的用法。
+这里有一个关于如何处理按钮点击的例子。注意[箭头函数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)的用法。
 
 ```jsx
 ...
@@ -185,7 +185,7 @@ export class MyComponent {
 
 
 
-这里有另一个关于监听 input `change` 事件的例子。注意 [箭头函数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) 的用法。
+这里有另一个关于监听 input 组件的 `change` 事件的例子。注意[箭头函数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)的用法。
 
 ```jsx
 ...

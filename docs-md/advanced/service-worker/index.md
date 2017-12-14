@@ -4,7 +4,7 @@
 
 ### 使用方法
 
-当使用 Stencil 构建一个生产环境的版本版本时候，Stencil 编译器会自动生成一个 service worker，并且在你的 index.html 里注入必要的代码来注册 service worker。此外，因为 Stencil 生存的文件是被哈希过的，每一次当你更新生产环境的版本时，service worker 都会更新，因此可以确保你的用户永远都不会卡在一个过时的版本上。
+当使用 Stencil 构建一个生产环境的版本版本时候，Stencil 编译器会自动生成一个 service worker，并且在你的 index.html 里注入必要的代码来注册 service worker。此外，因为 Stencil 生成的文件是被哈希过的，每一次当你更新生产环境的版本时，service worker 都会更新，因此可以确保你的用户永远都不会卡在一个过时的版本上。
 
 ### 配置
 

@@ -83,8 +83,8 @@ export class LandingPage {
             <h2>高效</h2>
 
             <p>
-              gzip压缩后仅6kb的运行时, 服务端渲染,
-              发挥Web Components原生潜力。
+              gzip 压缩后仅 6kb 的运行时, 服务端渲染,
+              发挥 Web Components 原生潜力。
               </p>
           </div>
 
@@ -92,7 +92,7 @@ export class LandingPage {
             <h2>前沿</h2>
 
             <p>
-              基于 100% 的 wweb 标准，构建多种多样的组件。
+              基于 100% 的 web 标准，构建多种多样的组件。
               打破框架的约束。
               </p>
           </div>

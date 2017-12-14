@@ -6,7 +6,7 @@
 
 ### 优点
 
-- 更快的 [首次有意义绘制](https://developers.google.com/web/tools/lighthouse/audits/first-meaningful-paint)
+- 更快的[首次有意义绘制](https://developers.google.com/web/tools/lighthouse/audits/first-meaningful-paint)
 - 对 SEO 友好
 - 当 JavaScript 被用户禁用时，仍然提供某些功能(译者注：循序渐进，平稳退化)
 

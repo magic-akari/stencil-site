@@ -34,7 +34,7 @@ export class MyComponent {
 <my-first-component name="Max"></my-first-component>
 ```
 
-> 注意 : Web 组件 必须包含一个 - 在标签中。`firstComponent` 不是一个有效的标签名称。
+> 注意 : Web 组件必须在标签中包含一个短横线 (-)。`firstComponent` 不是一个有效的标签名称。
 
 当渲染完成时，浏览器中将显示 `My name is Max` 。
 

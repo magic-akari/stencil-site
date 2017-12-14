@@ -1,6 +1,6 @@
 # 服务端渲染
 
-使用 Stencil 的一个优点，是开启高效的服务端渲染(SSR)非常容易，不需要运行耗费资源的无头浏览器。此外，决定在服务端渲染每个页面之前，你最好看一下[预渲染](/docs/prerendering)的内容。
+使用 Stencil 的一个优点，是开启高效的服务端渲染 (SSR) 非常容易，不需要运行耗费资源的无头浏览器。此外，决定在服务端渲染每个页面之前，你最好看一下[预渲染](/docs/prerendering)的内容。
 
 Stencil 支持 Node.js 服务，并且 SSR 渲染引擎已经内嵌到  `@stencil/core` 包里了。要查看完整的例子，请看 [Stencil SSR Starter](https://github.com/ionic-team/stencil-ssr-starter)。
 
