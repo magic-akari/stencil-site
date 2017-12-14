@@ -1,12 +1,14 @@
 # 测试
 
-Stencil 让你的组件通过Jset 和Stencil 单元测试框架来进行单元测试变得更加简单。 这个测试框架只需要非常少的配置并提供一个由两个函数组成的极小的API： `render()` 和 `flush()`。 Stencil 的单元测试框架能测试组件的渲染过程和定义在组件类中的方法。
+Stencil 让你的组件通过 Jset 和 Stencil 单元测试框架来进行单元测试变得更加简单。
+这个测试框架只需要非常少的配置并提供一个由两个函数组成的极小的API：
+`render()` 和 `flush()`。Stencil 的单元测试框架能测试组件的渲染过程和定义在组件类中的方法。
 
 ## 测试配置
 
-要想让一个Stencil 组件工程能够运行单元测试需要在 `package.json` 文件中进行一些少量的配置。 所有的配置都包含在了Stencil App Starter 和Stencil Component Starter 中，如果你要用这些模板来开始你的项目，你就不需要再添加任何东西。 这里介绍的信息仅供查阅。
+要想让一个 Stencil 组件工程能够运行单元测试，需要在 `package.json` 文件中进行一些少量的配置。所有的配置都包含在了 Stencil App Starter 和 Stencil Component Starter 中，如果你要用这些模板来开始你的项目，你就不需要再添加任何东西。这里介绍的信息仅供查阅。
 
-Jest 作为开依赖来安装：
+Jest 需要被安装为开发依赖 (devDependencies)：
 
 ```json
   "devDependencies": {
@@ -16,7 +18,7 @@ Jest 作为开依赖来安装：
   },
 ```
 
-设置NPM 脚本来运行这些测试：
+设置 NPM 脚本来运行这些测试：
 
 ```json
   "scripts": {
@@ -26,7 +28,7 @@ Jest 作为开依赖来安装：
   },
 ```
 
-配置Jest 来查找测试文件并且用Stencil 预处理器脚本来编译源文件：
+配置 Jest 来查找测试文件并且用 Stencil 预处理器脚本来编译源文件：
 
 ```json
   "jest": {
@@ -47,24 +49,29 @@ Jest 作为开依赖来安装：
 ## 组件渲染测试
 
 Stencil 测试框架的API包含两个用来渲染测试组件的函数：
-- `render({ components: [], html: string })` - `render()` 函数接收一个组件的列表和一个HTML 片段，并返回一个包含渲染完成的HTML 元素的promise实例。
 
-- `flush(element)` - `flush()` 函数用来在一个元素的属性更改后，刷新这个元素的渲染过程。这个函数在刷新完成以后返回一个已完成的promise实例。
+- `render({ components: [], html: string })` - `render()` 函数接收一个组件的列表和一个 HTML 片段，
+并返回一个包含渲染完成的 HTML 元素的 promise 实例。
+
+- `flush(element)` - `flush()` 函数用来在一个元素的属性更改后，刷新这个元素的渲染过程。
+这个函数在刷新完成以后返回一个当 flush 完成以后会被 resolve 的 promise 实例。
 
 这些函数都是异步执行的。
 
-渲染时的一个共通测试模式是在`beforeEach()` 中`render()` 这个组件来进行一套测试。然后，每个测试用例修改元素并使用`flush(element)` 刷新节点。
+渲染时，一个常用的测试模式是在 `beforeEach()` 中`render()` 这个组件来进行一套测试。然后，每个测试用例修改元素并使用 `flush(element)` 刷新节点。
 
 ### 渲染一个组件
 
-用`render()` 函数来初始化渲染一个组件。
+用 `render()` 函数来初始化渲染一个组件。
 
-这个函数需要一个包含两个参数的配置对象：
+这个函数接受一个包含两个参数的配置对象作为参数：
 
-- `components` ： 一个渲染器需要了解的组件列表。 通常来说， 这个列表只需要包含被测试的组件。如果你需要为你的测试渲染子组件也可以包含他们，
+- `components` ： 一个渲染器需要了解的组件列表。通常来说，这个列表只需要包含被测试的组件。如果你需要为你的测试渲染子组件也可以包含他们，
 不过不需要单独添加。
 
-- `html` ： 一个用来渲染组件的HTML 片段。通常这个片段类似于`<my-component></my-component>`。 这个函数返回一个包含渲染完成的HTML 元素的promise实例。
+- `html` ： 一个用来渲染组件的 HTML 片段。通常这个片段类似于 `<my-component></my-component>`。
+
+这个函数返回一个包含渲染完成的 HTML 元素的 promise 实例。
 
 ```ts
 beforeEach(async () => {
@@ -77,7 +84,7 @@ beforeEach(async () => {
 
 ### 刷新一个组件
 
-用`flush()` 函数来按需要重新渲染一个节点。这通常用于更改组件的属性值之后。
+如果需要，使用 `flush()` 函数来重新渲染一个节点。这通常用于更改组件的属性值之后。
 
 ```ts
 it('should work with both the first and the last name', async () => {
@@ -90,9 +97,9 @@ it('should work with both the first and the last name', async () => {
 
 ### 检测元素
 
-由于所呈现的元素是一个HTML元素， 你能用[HTMLElement interface](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement)中的方法和属性来测试元素中的内容。
+由于所渲染的元素是一个 HTML 元素，你能用 [HTMLElement interface](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) 中的方法和属性来测试元素中的内容。
 
-替代打印姓和名，我们的组件需要把名字用空格分隔开并姓名的每个部分的列表打印出来。我们就可以这么写一个渲染测试，如下：
+比如说，我们现在不再打印姓和名了，我们的组件必须把名字根据空格分隔开形成一个列表，并打印出来。我们就可以这么写一个渲染测试，如下：
 
 ```ts
     it('should least each part of the name breaking on spaces', async () => {
@@ -108,12 +115,13 @@ it('should work with both the first and the last name', async () => {
       expect(list.children[4].textContent).toEqual('Buttersworth');
     });
 ```
-任何你能在[HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) 用到的方法和属性都可以在这个测试中用上。
+
+任何你能在 [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) 用到的方法和属性都可以在这个测试中使用。
 
 
 ## 组件方法测试
 
-为了测试组件的方法， 只需实例化组件并调用其中的方法。
+为了测试组件的方法，只需实例化组件并调用其中的方法。
 
 ```ts
 it('should return an empty string if there is no first or last name', () => {
