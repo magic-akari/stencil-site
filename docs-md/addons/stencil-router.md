@@ -145,7 +145,7 @@ export class ShowPage {
 const myData = this.match.params.pageNum
 ```
 
-<stencil-route-link url="/docs/angular-integration" router="#router" custom="true">
+<stencil-route-link url="/docs/framework-integration" router="#router" custom="true">
   <button class="backButton">
     返回
   </button>

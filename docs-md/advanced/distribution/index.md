@@ -69,7 +69,7 @@ exports.config = {
   </button>
 </stencil-route-link>
 
-<stencil-route-link url="/docs/angular-integration" custom="true">
+<stencil-route-link url="/docs/framework-integration" custom="true">
   <button class="nextButton">
     继续
   </button>
