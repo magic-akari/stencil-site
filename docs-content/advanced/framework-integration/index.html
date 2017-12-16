@@ -1,0 +1,112 @@
+<h1 id="-stencil-web-">将 Stencil 构建的 Web 组件集成到框架中</h1>
+<p>在这个部分，我们将概述最简单的方法，将使用 Stencil 构建的 Web 组件，集成到已使用流行框架框架编写的应用中。</p>
+<h2 id="angular">Angular</h2>
+<p>将使用 Stencil 构建的 Web 组件集成到使用 Angular CLI 构建的项目中，需要四个步骤。我们需要：</p>
+<ol>
+<li>获取组件集合，比如通过 NPM 安装获取</li>
+<li>在使用组件的 modules 中包含 CUSTOM_ELEMENTS_SCHEMA</li>
+<li>在 <code>index.html</code> 中包含载入脚本</li>
+<li>构建过程中复制组件集合</li>
+</ol>
+<h3 id="-custom-elements-schema">包含 Custom Elements Schema</h3>
+<p>在 modules 中包含 CUSTOM_ELEMENTS_SCHEMA 允许你使用 web 组件中而不会让编译器产生错误。这是一个将其添加到 <code>AppModule</code> 的例子：</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">import</span> { BrowserModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser'</span>;
+<span class="hljs-keyword">import</span> { NgModule, CUSTOM_ELEMENTS_SCHEMA } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-keyword">import</span> { AppComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./app.component'</span>;
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppModule</span> { }</span>
+</code></pre>
+<h3 id="-">包含载入脚本</h3>
+<p>一个由 Stencil 构建的组件集合，包含了一个主脚本用于载入这些组件集合。该脚本需要像这样在你的应用中载入：</p>
+<pre><code class="lang-html"><span class="hljs-meta">&lt;!doctype html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Test Component Usage<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">base</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/stencil-site/"</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"image/x-icon"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"favicon.ico"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">'test-components/testcomponents.js'</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">app-root</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">app-root</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<h3 id="-">复制组件</h3>
+<p>在构建过程中，组件需要被复制到输出文件夹。最简单的方法是修改 <code>.angular-cli.json</code> 文件里的 <code>assets</code> 数组，将组件集合添加到其中。</p>
+<pre><code>      <span class="hljs-string">"assets"</span>: [
+        <span class="hljs-string">"assets"</span>,
+        <span class="hljs-string">"favicon.ico"</span>,
+        { <span class="hljs-string">"glob"</span>: <span class="hljs-string">"**/*"</span>, <span class="hljs-string">"input"</span>: <span class="hljs-string">"../node_modules/test-components"</span>, <span class="hljs-string">"output"</span>: <span class="hljs-string">"./test-components"</span> }
+      ],
+</code></pre><h2 id="react">React</h2>
+<p>在使用 <code>create-react-app</code> 脚本构建的应用中，有两个可选的选项来集成 Stencil 构建的 Web 组件集合。</p>
+<ol>
+<li>在项目中运行 npm run eject ~或者~</li>
+<li><a href="https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#using-the-public-folder">使用 <code>public</code> 文件夹</a></li>
+</ol>
+<p>在这份指南中，我们选择后者。这个流程需要单个步骤：</p>
+<ol>
+<li>获取组件集合，比如通过 NPM 安装获取</li>
+<li>复制组件集合到 <code>public</code> 文件夹</li>
+<li>在 <code>index.html</code> 中包含载入脚本</li>
+</ol>
+<h3 id="-public-">复制组件集合到 <code>public</code> 文件夹</h3>
+<p>React 的构建流程会自动复制所有 <code>public</code> 文件夹下的东西到 <code>build</code> 文件夹。最简单的复制组件集合方法是设置 npm 的 <code>postinstall</code> 脚本来完成包被安装到项目后的复制工作。</p>
+<p>下面是一个关于 <code>package.jsom</code> 中的 <code>postinstall</code> 的简单的例子。当这个包从 NPM 源安装后，将会自动把组件集合复制到项目中。这个例子仅在 *nix 系统下能正常工作，如 Linux 或者 macOS。如果你要支持更多的系统，或者做一些更复杂到操作，你可以创建一个 NodeJS 脚本来完成这些操作，并在你的 <code>postinstall</code> 中调用它。</p>
+<pre><code class="lang-json">  <span class="hljs-string">"scripts"</span>: {
+    <span class="hljs-string">"start"</span>: <span class="hljs-string">"react-scripts start"</span>,
+    <span class="hljs-string">"build"</span>: <span class="hljs-string">"react-scripts build"</span>,
+    <span class="hljs-string">"test"</span>: <span class="hljs-string">"react-scripts test --env=jsdom"</span>,
+    <span class="hljs-string">"eject"</span>: <span class="hljs-string">"react-scripts eject"</span>,
+    <span class="hljs-string">"postinstall"</span>: <span class="hljs-string">"cp -R node_modules/my-components public"</span>
+  }
+</code></pre>
+<p><strong>注:</strong> 上边的例子中，你可能希望将 <code>/public/my-components</code> 添加到你的 <code>.gitignore</code> 文件中，让 git 忽略它。</p>
+<h3 id="-">包含载入脚本</h3>
+<p>使用 Stencil 构建的组件集合包含一个主脚本，用来载入集合中的组件。那个脚本需要你将它包含在你的应用中的 <code>pubic/index.html</code> 文件里来载入它，比如：</p>
+<pre><code class="lang-html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1, shrink-to-fit=no"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"theme-color"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"#000000"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"manifest"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"%PUBLIC_URL%/manifest.json"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"shortcut icon"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"%PUBLIC_URL%/favicon.ico"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">'%PUBLIC_URL%/my-components/mycomponents.js'</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Test Components in React<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">noscript</span>&gt;</span>
+      You need to enable JavaScript to run this app.
+    <span class="hljs-tag">&lt;/<span class="hljs-name">noscript</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"root"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p><stencil-route-link url="/stencil-site/docs/distribution" router="#router" custom="true">
+  <button class='backButton'>
+    返回
+  </button>
+</stencil-route-link></p>
+<p><stencil-route-link url="/stencil-site/docs/css-variables" custom="true">
+  <button class='nextButton'>
+    继续
+  </button>
+</stencil-route-link></p>

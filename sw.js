@@ -55,6 +55,10 @@ const fileManifest = [
     "revision": "6f27af15cab04aafd7193b76825c2eac"
   },
   {
+    "url": "host.config.json",
+    "revision": "4aaec287a3ca9ce88dc41ce0c5cf83cc"
+  },
+  {
     "url": "manifest.json",
     "revision": "c196d300ffd65908f26a5b316c8aa290"
   },
@@ -95,8 +99,12 @@ const fileManifest = [
     "revision": "6f27af15cab04aafd7193b76825c2eac"
   },
   {
+    "url": "stencil-site/build/app.css",
+    "revision": "cde472c784e9b7000a34b2581e180be7"
+  },
+  {
     "url": "stencil-site/build/app.js",
-    "revision": "605f141bfe3aa6fcff40f95e5d206a49"
+    "revision": "83efb4fc363502481f648bf58005d138"
   },
   {
     "url": "stencil-site/build/app/3k7lx5cn.js",
@@ -107,16 +115,8 @@ const fileManifest = [
     "revision": "d8783a51d88a5fe606e0bd94a40261be"
   },
   {
-    "url": "stencil-site/build/app/5o6kav7n.js",
-    "revision": "9eedeab42fb55e32d3960be5da8e6962"
-  },
-  {
     "url": "stencil-site/build/app/6h3gn76l.js",
     "revision": "b46ee5986c7fda07d6efbd4caa777cde"
-  },
-  {
-    "url": "stencil-site/build/app/9w3o4rop.js",
-    "revision": "0fdddf71a2b23fcbbebb94d4d0e038d8"
   },
   {
     "url": "stencil-site/build/app/9yov4blo.js",
@@ -140,11 +140,7 @@ const fileManifest = [
   },
   {
     "url": "stencil-site/build/app/app.registry.json",
-    "revision": "db6a344f4f04b0a0c0e397d18d713668"
-  },
-  {
-    "url": "stencil-site/build/app/caxvifpw.js",
-    "revision": "e53833e2d935f9fae7cc915ab427dbfa"
+    "revision": "d10bda2522d0b74787fe6caae4b6d9bd"
   },
   {
     "url": "stencil-site/build/app/cv7cbtbi.js",
@@ -153,6 +149,10 @@ const fileManifest = [
   {
     "url": "stencil-site/build/app/iywtdof8.js",
     "revision": "cebf5978de92074deed7af4f0bb39f58"
+  },
+  {
+    "url": "stencil-site/build/app/jn9xe6i7.js",
+    "revision": "1400427b4f427dc086ba86e5aad7560b"
   },
   {
     "url": "stencil-site/build/app/mdjj9o4m.js",
@@ -167,28 +167,40 @@ const fileManifest = [
     "revision": "7438a81d2db06c201be7ba516d9071ca"
   },
   {
+    "url": "stencil-site/build/app/qhr4r0rn.js",
+    "revision": "c9de5f3c2b2d122bc0bf7f8e40e7c8b8"
+  },
+  {
+    "url": "stencil-site/build/app/rmww4mn7.js",
+    "revision": "7a54f3ca447d8f8f16b90040b5e96659"
+  },
+  {
+    "url": "stencil-site/build/app/tilxb3td.js",
+    "revision": "ff9d740d8f275d1d9aaf310362f8981e"
+  },
+  {
     "url": "stencil-site/build/app/u02wzu0j.js",
     "revision": "4a5acb93ef42daa664e43dfb9cc7e4e8"
   },
   {
-    "url": "stencil-site/build/app/wnjwjl0u.js",
-    "revision": "147aa54f344dde453b2f5c36419b4b9f"
-  },
-  {
     "url": "stencil-site/demos/index.html",
-    "revision": "e1725185e6c0380615bc965ac888512b"
+    "revision": "de91baefd737609363d6b1d74bb37e06"
   },
   {
     "url": "stencil-site/docs-content/addons/stencil-router.html",
-    "revision": "f3b1fcb4a03c84137a3e11db07c2ee59"
+    "revision": "d65dc6874ce2f3ba66466974e75bcb20"
   },
   {
-    "url": "stencil-site/docs-content/advanced/angular-integration/index.html",
-    "revision": "5108186f145581ee5cb304cab8481e7a"
+    "url": "stencil-site/docs-content/advanced/css-variables/index.html",
+    "revision": "51174a80275664a9c6a22971486be46d"
   },
   {
     "url": "stencil-site/docs-content/advanced/distribution/index.html",
-    "revision": "aae1ffabfb5476ef606066befa98a67b"
+    "revision": "7f770bcc01e8b2db3a530c4c2f70914a"
+  },
+  {
+    "url": "stencil-site/docs-content/advanced/framework-integration/index.html",
+    "revision": "0210227d576e9051a3479af8ef0f741d"
   },
   {
     "url": "stencil-site/docs-content/advanced/pre-rendering/index.html",
@@ -244,7 +256,7 @@ const fileManifest = [
   },
   {
     "url": "stencil-site/docs-content/compiler/config.html",
-    "revision": "f9c2cda306801bb1b38562175b7719d6"
+    "revision": "71c3c54c9e2c47d6a922379f132683af"
   },
   {
     "url": "stencil-site/docs-content/intro/browsers.html",
@@ -259,84 +271,88 @@ const fileManifest = [
     "revision": "ace65562a1181d10cd4c21a48c8d702a"
   },
   {
-    "url": "stencil-site/docs/angular-integration/index.html",
-    "revision": "9f8a99f281f8a0f2e079c18b12892845"
-  },
-  {
     "url": "stencil-site/docs/browser-support/index.html",
-    "revision": "66bb1cdf8dd7677a626d166a626487d3"
+    "revision": "bfd05e345a6738178ba7cf3342b1daa5"
   },
   {
     "url": "stencil-site/docs/component-lifecycle/index.html",
-    "revision": "03ea8f04dca522c539c9efa80962a5ba"
+    "revision": "5e7fe5e98d7bacc4ffd6cbcc4469b3d9"
+  },
+  {
+    "url": "stencil-site/docs/css-variables/index.html",
+    "revision": "94efb19fc651629aabeadbec5681341b"
   },
   {
     "url": "stencil-site/docs/decorators/index.html",
-    "revision": "8f90021f45271b16fc608550f0a5af89"
+    "revision": "50ac662224921474b7a3b57f04b01f03"
   },
   {
     "url": "stencil-site/docs/distribution/index.html",
-    "revision": "488575851076a775bfa57595eed4d352"
+    "revision": "cfec0a9484e8090b1ffa78369e2e3c20"
   },
   {
     "url": "stencil-site/docs/events/index.html",
-    "revision": "198bda1f91de031fe83ff51324632438"
+    "revision": "257e8d13c2b7187bb3dab95e15f0f0be"
   },
   {
     "url": "stencil-site/docs/forms/index.html",
-    "revision": "0e75ec7d5aa41502b910f7d942c5d919"
+    "revision": "c627f87bf489cd33dde9f483005ff584"
+  },
+  {
+    "url": "stencil-site/docs/framework-integration/index.html",
+    "revision": "8b4b7bf08b9a7e6b4525522c85fc23ab"
   },
   {
     "url": "stencil-site/docs/getting-started/index.html",
-    "revision": "874920cdc186f79971361eb84eb618d0"
+    "revision": "6f67d10622df986357d5bcd4ec1f0867"
   },
   {
     "url": "stencil-site/docs/handling-arrays/index.html",
-    "revision": "c6c72787dcd1d92269be54717c320eac"
+    "revision": "b6392b81fe4a3b33c704a3a2e0579909"
   },
   {
     "url": "stencil-site/docs/intro/index.html",
-    "revision": "bfbfdf39803242e195459272713fe3c1"
+    "revision": "0d49e1524793ba5ae774911610d56867"
   },
   {
     "url": "stencil-site/docs/my-first-component/index.html",
-    "revision": "4582eb8dec019abcdef30bdb9ce52e55"
+    "revision": "8f1c174f317d02502c0e4100ffe5d9bc"
   },
   {
     "url": "stencil-site/docs/prerendering/index.html",
-    "revision": "1a33c771d14a121d0b32d2a87a7e22ff"
+    "revision": "cff236e505080ed149da89d99a3cea7e"
   },
   {
     "url": "stencil-site/docs/routing/index.html",
-    "revision": "7bcf49086c2c85d3dfe340e0a8026179"
+    "revision": "cfab0d805a7bce66135aaae7b700d497"
   },
   {
     "url": "stencil-site/docs/server-side-rendering/index.html",
-    "revision": "37faa32adda349c3ead8fbcaae741209"
+    "revision": "06e5a342e360a9baa5222233298fa3c1"
   },
   {
     "url": "stencil-site/docs/service-workers/index.html",
-    "revision": "3d85875613d40149cbd88f08b1ca7d8e"
+    "revision": "10262cc38b167304f0741aa35a8ae30d"
   },
   {
     "url": "stencil-site/docs/shadow-dom/index.html",
-    "revision": "70e48c0edb1ef4805ba431f6f8c0c51a"
+    "revision": "cef79a5f983f2ce9a1d6d0f72ab7af21"
   },
   {
     "url": "stencil-site/docs/stencil-config/index.html",
-    "revision": "6c0f158658ad395cadff833e3baf6e4e"
+    "revision": "d6a9809034be7a976a18d3c01ee81b70"
   },
   {
     "url": "stencil-site/docs/templating/index.html",
-    "revision": "ed355c6193d33dc2ed617cc45e65b858"
+    "revision": "f9d495ab9cb1091f57327c3eb8b0e709"
   },
   {
     "url": "stencil-site/docs/testing/index.html",
-    "revision": "4ed856f93bf6c2c4a525eea77f4abd05"
+    "revision": "f49a64b01b0108ae4d4d027dea13cc34"
   },
   {
     "url": "stencil-site/index.html",
-    "revision": "a7de365eb1a5e9bd8bffc19251a40893"
+    "revision": "5211ed2800d4146397aa2f0323a123ab"
   },
   {
     "url": "stencil-site/manifest.json",
@@ -344,11 +360,11 @@ const fileManifest = [
   },
   {
     "url": "stencil-site/pwa/index.html",
-    "revision": "c90ad59d25140c1c4868ee66277dc3a2"
+    "revision": "1a9bb829efa12928a2051a154d200ef6"
   },
   {
     "url": "stencil-site/resources/index.html",
-    "revision": "a44e5e5d35385e6f5da9a1804125b4ff"
+    "revision": "f7c4c629a3473d436589c9bae2cd88f1"
   }
 ];
 
