@@ -19,7 +19,7 @@
     "@stencil/dev-server": "0.0.18-0",
     "@stencil/utils": "latest",
     "gh-pages": "^1.0.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-markdown": "^1.2.0",
     "highlight.js": "^9.12.0"
   },
